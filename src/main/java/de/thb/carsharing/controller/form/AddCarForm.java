@@ -19,13 +19,14 @@ public class AddCarForm {
     private String model;
     @NotNull
     @NotEmpty
+    private Color color;
+    /*
+    @NotNull
+    @NotEmpty
     private short yearBuilt;
     @NotNull
     @NotEmpty
-    private Color color;
-    @NotNull
-    @NotEmpty
-    private /*FuelType*/ String fuelType;
+    private FuelType fuelType;
     @NotNull
     @NotEmpty
     private String location;
@@ -35,4 +36,7 @@ public class AddCarForm {
     @NotNull
     @NotEmpty
     private boolean isAvailable;
+    */
+
+
 }

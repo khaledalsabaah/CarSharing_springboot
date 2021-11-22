@@ -24,11 +24,10 @@ public class CarController {
 
     private final CarService carService;
 
-    // */cars
     @GetMapping("cars")
     public String showCars(Model model){
-        List<Car> CarList= carService.getAllCars();
-        model.addAttribute("Cars", CarList);
+        List<Car> carList= carService.getAllCars();
+        model.addAttribute("cars", carList);
         return "cars";
     }
     @GetMapping("cars/{id}")
@@ -39,15 +38,16 @@ public class CarController {
             Car= carService.getCarById(id).get();
         else
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
-        model.addAttribute("Car", Car);
+        model.addAttribute("car", Car);
         return "details";
     }
-    @PostMapping("addCar")
+    @PostMapping("addcar")
     public String addCar(@Valid AddCarForm form, BindingResult result){
         //if(result.hasErrors())
-        //arService.addCar(form.getModel(), form.getYearBuilt(), form.getColor(), form.getFuelType(),
+        //CarService.addCar(form.getModel(), form.getYearBuilt(), form.getColor(), form.getFuelType(),
         //        form.getLocation(), form.isAutomatic(), form.isAvailable());
+        carService.addCar(form.getModel(), form.getColor());
 
-        return "redirect:/Cars";
+        return "redirect:/cars";
     }
 }

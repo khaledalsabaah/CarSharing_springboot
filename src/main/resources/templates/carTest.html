@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meine Cars</title>
+</head>
+<body>
+<h1> Meine Cars im Überblick</h1>
+<ul>
+    <li th:each="car: ${cars}">
+        <span th:text="${car.model}"> </span>
+        <a th:href="@{/cars/{id} (id=${car.id})}">Details</a>
+    </li>
+</ul>
+<h2> Neues Car erstellen</h2>
+<form action="http://localhost:8080/addcar" method ="post">
+    <b>Title: </b>
+    <input type ="text" name = "Model">
+    <b>Description: </b>
+    <input type ="text" name = "Color">
+    <input type ="submit" name = "Car anlegen">
+</form>
+</body>
+</html>
