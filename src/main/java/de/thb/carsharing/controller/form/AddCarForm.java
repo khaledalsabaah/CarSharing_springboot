@@ -18,7 +18,6 @@ public class AddCarForm {
     @NotEmpty
     private String model;
     @NotNull
-    @NotEmpty
     private Color color;
     /*
     @NotNull
