@@ -46,7 +46,7 @@ public class CarController {
         //if(result.hasErrors())
         //CarService.addCar(form.getModel(), form.getYearBuilt(), form.getColor(), form.getFuelType(),
         //        form.getLocation(), form.isAutomatic(), form.isAvailable());
-        carService.addCar(form.getModel(), form.getColor());
+        carService.addCar(form.getModel(), form.getCarColor());
 
         return "redirect:/cars";
     }

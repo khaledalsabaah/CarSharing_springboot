@@ -1,5 +1,6 @@
 package de.thb.carsharing.entity;
 
+import de.thb.carsharing.entity.Type.BookingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Booking {
     private long id;
     private Date startTime;
     private Date endTime;
+    private BookingStatus bookingStatus;
     @ManyToOne
     private Car car;
     @ManyToOne

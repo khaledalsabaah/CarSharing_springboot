@@ -1,6 +1,7 @@
 package de.thb.carsharing.service;
 
 import de.thb.carsharing.entity.Car;
+import de.thb.carsharing.entity.Type.CarColor;
 import de.thb.carsharing.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,10 +24,10 @@ public class CarService {
         return carRepository.findById(id);
     }
 
-    public Car addCar(String model, Color color) {
+    public Car addCar(String model, CarColor carColor) {
         return carRepository.save(Car.builder()
                 .model(model)
-                .color(color)
+                .carColor(carColor)
                 .build());
     }
 }

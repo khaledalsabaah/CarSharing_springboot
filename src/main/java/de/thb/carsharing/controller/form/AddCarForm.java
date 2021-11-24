@@ -1,5 +1,6 @@
 package de.thb.carsharing.controller.form;
 
+import de.thb.carsharing.entity.Type.CarColor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,7 +19,7 @@ public class AddCarForm {
     @NotEmpty
     private String model;
     @NotNull
-    private Color color;
+    private CarColor carColor;
     /*
     @NotNull
     @NotEmpty

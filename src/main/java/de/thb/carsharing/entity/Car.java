@@ -1,12 +1,13 @@
 package de.thb.carsharing.entity;
 
+import de.thb.carsharing.entity.Type.CarColor;
+import de.thb.carsharing.entity.Type.FuelType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.awt.*;
 import java.util.List;
 
 @Data
@@ -19,7 +20,14 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String model;
-    private Color color;
+    private CarColor carColor;
+    private short yearBuilt;
+    private FuelType fuelType;
+    private double xCoordinates;
+    private double yCoordinates;
+    private boolean isAutomatic;
+    private boolean isInService;
+    private boolean isAvailable;
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private List<Booking> bookingList;
 }
