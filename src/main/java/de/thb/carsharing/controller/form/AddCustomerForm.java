@@ -9,30 +9,22 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.awt.*;
+import java.util.Date;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddCarForm {
+public class AddCustomerForm {
     @NotNull
     @NotEmpty
-    private String model;
+    private String firstName;
     @NotNull
-    private CarColor carColor;
+    @NotEmpty
+    private String lastName;
     @NotNull
-    private short yearBuilt;
+    private Date registrationDate;
     @NotNull
-    private FuelType fuelType;
-    @NotNull
-    private double xCoordinates;
-    @NotNull
-    private double yCoordinates;
-    @NotNull
-    private boolean isAutomatic;
-    @NotNull
-    private boolean isInService;
-    @NotNull
-    private boolean isAvailable;
+    @NotEmpty
+    private String driversLicenceID;
 }

@@ -44,9 +44,10 @@ public class CarController {
     @PostMapping("addcar")
     public String addCar(@Valid AddCarForm form, BindingResult result){
         //if(result.hasErrors())
-        //CarService.addCar(form.getModel(), form.getYearBuilt(), form.getColor(), form.getFuelType(),
-        //        form.getLocation(), form.isAutomatic(), form.isAvailable());
-        carService.addCar(form.getModel(), form.getCarColor());
+        carService.addCar(form.getModel(), form.getCarColor(),form.getYearBuilt(), form.getFuelType(),
+                form.getXCoordinates(), form.getYCoordinates(), form.isAutomatic(), form.isAvailable(),
+                form.isInService());
+
 
         return "redirect:/cars";
     }

@@ -5,6 +5,7 @@ import de.thb.carsharing.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,10 +23,12 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public Customer addCustomer(String firstName, String lastName) {
+    public Customer addCustomer(String firstName, String lastName, Date registrationDate, String driversLicenceID) {
         return customerRepository.save(Customer.builder()
-                .firstName(firstName)
-                .lastName(lastName)
-                .build());
+                        .firstName(firstName)
+                        .lastName(lastName)
+                        .registrationDate(registrationDate)
+                        .driversLicenceID(driversLicenceID)
+                        .build());
     }
 }
