@@ -28,4 +28,6 @@ public class CustomerService {
                 .lastName(lastName)
                 .build());
     }
+
+    public void deleteCarById(long id) { customerRepository.deleteById(id);}
 }
