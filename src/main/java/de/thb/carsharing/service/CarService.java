@@ -50,36 +50,44 @@ public class CarService {
         carRepository.deleteById(id);
     }
 
-    public void openCar(long id) {
+    public boolean openCar(long id) {
         if (carRepository.findById(id).isPresent()) {
             Car car = carRepository.findById(id).get();
             car.setOpen(true);
             carRepository.save(car);
-        }
+            return true;
+        } else
+            return false;
     }
 
-    public void closeCar(long id) {
+    public boolean closeCar(long id) {
         if (carRepository.findById(id).isPresent()) {
             Car car = carRepository.findById(id).get();
             car.setOpen(false);
             carRepository.save(car);
-        }
+            return true;
+        } else
+            return false;
     }
 
-    public void setCarInService(long id) {
+    public boolean setCarInService(long id) {
         if (carRepository.findById(id).isPresent()) {
             Car car = carRepository.findById(id).get();
             car.setInService(true);
             carRepository.save(car);
-        }
+            return true;
+        } else
+            return false;
     }
 
-    public void setCarOutOfService(long id) {
+    public boolean setCarOutOfService(long id) {
         if (carRepository.findById(id).isPresent()) {
             Car car = carRepository.findById(id).get();
             car.setInService(true);
             carRepository.save(car);
-        }
+            return true;
+        } else
+            return false;
     }
 
 }
