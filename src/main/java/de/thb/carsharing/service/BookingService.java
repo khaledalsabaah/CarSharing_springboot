@@ -28,9 +28,10 @@ public class BookingService {
 
     public Booking addBooking(Car car, Customer customer) {
         return bookingRepository.save(Booking.builder()
-                .startTime(new Date())
                 .car(car)
                 .customer(customer)
+                .startTime(new Date())
+                .bookingStatus(BookingStatus.ORDERED)
                 .build());
     }
 

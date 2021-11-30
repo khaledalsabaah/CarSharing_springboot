@@ -1,5 +1,6 @@
 package de.thb.carsharing.service;
 
+import de.thb.carsharing.entity.Booking;
 import de.thb.carsharing.entity.Customer;
 import de.thb.carsharing.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -25,12 +26,29 @@ public class CustomerService {
 
     public Customer addCustomer(String firstName, String lastName, Date registrationDate, String driversLicenceID) {
         return customerRepository.save(Customer.builder()
-                        .firstName(firstName)
-                        .lastName(lastName)
-                        .registrationDate(registrationDate)
-                        .driversLicenceID(driversLicenceID)
-                        .build());
+                .firstName(firstName)
+                .lastName(lastName)
+                .registrationDate(registrationDate)
+                .driversLicenceID(driversLicenceID)
+                .build());
     }
 
-    public void deleteCarById(long id) { customerRepository.deleteById(id);}
+    public void deleteCarById(long id) {
+        customerRepository.deleteById(id);
+    }
+
+    public boolean modifyAccountDetails(long id, String firstName, String lastName, String driversLicenceID) {
+        if (customerRepository.findById(id).isPresent()) {
+            Customer customer = customerRepository.findById(id).get();
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setDriversLicenceID(driversLicenceID);
+            customerRepository.save(customer);
+            return true;
+        } else
+            return false;
+    }
+
+    //TODO - login
+
 }

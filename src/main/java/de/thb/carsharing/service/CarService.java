@@ -1,5 +1,6 @@
 package de.thb.carsharing.service;
 
+import de.thb.carsharing.entity.Booking;
 import de.thb.carsharing.entity.Car;
 import de.thb.carsharing.entity.Type.CarColor;
 import de.thb.carsharing.entity.Type.FuelType;
@@ -29,23 +30,64 @@ public class CarService {
         return carRepository.findByisAvailableTrue();
     }
 
-    public Car addCar(String model, CarColor carColor, short yearBuilt, FuelType fuelType,double xCoordinates, double yCoordinates,boolean isAutomatic,boolean isInService,boolean isAvailable) {
+    public Car addCar(String model, CarColor carColor, short yearBuilt, FuelType fuelType,
+                      double xCoordinates, double yCoordinates, boolean isAutomatic) {
         return carRepository.save(Car.builder()
-                        .model(model)
-                        .carColor(carColor)
-                        .isInService(isInService)
-                        .isAutomatic(isAutomatic)
-                        .isAvailable(isAvailable)
-                        .fuelType(fuelType)
-                        .xCoordinates(xCoordinates)
-                        .yCoordinates(yCoordinates)
-                        .yearBuilt(yearBuilt)
-                        .build());
+                .model(model)
+                .carColor(carColor)
+                .yearBuilt(yearBuilt)
+                .fuelType(fuelType)
+                .xCoordinates(xCoordinates)
+                .yCoordinates(yCoordinates)
+                .isAutomatic(isAutomatic)
+                .isAvailable(true)
+                .isInService(true)
+                .isOpen(false)
+                .build());
     }
-    //hier bitte als bool damit ich das Löchen bestätigen kann
-    public void deleteCarById(long id) { carRepository.deleteById(id);}
 
+    public void deleteCarById(long id) {
+        carRepository.deleteById(id);
+    }
 
+    public boolean openCar(long id) {
+        if (carRepository.findById(id).isPresent()) {
+            Car car = carRepository.findById(id).get();
+            car.setOpen(true);
+            carRepository.save(car);
+            return true;
+        } else
+            return false;
+    }
 
+    public boolean closeCar(long id) {
+        if (carRepository.findById(id).isPresent()) {
+            Car car = carRepository.findById(id).get();
+            car.setOpen(false);
+            carRepository.save(car);
+            return true;
+        } else
+            return false;
+    }
+
+    public boolean setCarInService(long id) {
+        if (carRepository.findById(id).isPresent()) {
+            Car car = carRepository.findById(id).get();
+            car.setInService(true);
+            carRepository.save(car);
+            return true;
+        } else
+            return false;
+    }
+
+    public boolean setCarOutOfService(long id) {
+        if (carRepository.findById(id).isPresent()) {
+            Car car = carRepository.findById(id).get();
+            car.setInService(true);
+            carRepository.save(car);
+            return true;
+        } else
+            return false;
+    }
 
 }
