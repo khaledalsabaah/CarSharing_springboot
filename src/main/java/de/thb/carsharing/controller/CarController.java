@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,15 +31,21 @@ public class CarController {
         model.addAttribute("cars", carList);
         return "cars";
     }
+    @GetMapping("availablecars")
+    public String showAvailableCars(Model model){
+        List<Car> avaliableCarList= carService.getAllAvailableCars();
+        model.addAttribute("availableCars", avaliableCarList);
+        return "cars";
+    }
     @GetMapping("cars/{id}")
     public String showCarDetail(@PathVariable("id") Long id, Model model){
 
-        Car Car;
+        Car car;
         if(carService.getCarById(id).isPresent())
-            Car= carService.getCarById(id).get();
+            car= carService.getCarById(id).get();
         else
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
-        model.addAttribute("car", Car);
+        model.addAttribute("car", car);
         return "details";
     }
     @PostMapping("addcar")
@@ -47,7 +54,13 @@ public class CarController {
         carService.addCar(form.getModel(), form.getCarColor(),form.getYearBuilt(), form.getFuelType(),
                 form.getXCoordinates(), form.getYCoordinates(), form.isAutomatic(), form.isAvailable(),
                 form.isInService());
-
+        return "redirect:/cars";
+    }
+    @PostMapping("/deleteCar/{id}")
+    public String deleteBuyer(@PathVariable Long id){
+        carService.deleteCarById(id);
+       // if (result.hasErrors())
+        //    throw new ResponseStatusException((HttpStatus.NOT_FOUND));
 
         return "redirect:/cars";
     }

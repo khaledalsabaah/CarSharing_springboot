@@ -1,0 +1,56 @@
+.container {
+  background: rgba(177, 199, 168, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+  width: 700px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 40px;
+}
+.container input {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid #000000;
+  display: block;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+@media only screen and (max-width: 540px) {
+  .col-half {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+.row {
+  width: 50%;
+}
+.col-half input {
+  width: 50%;
+}
+.input-group input-group-icon {
+  width: 50%;
+}
+fa fa-credit-card {
+  width: 50%;
+}
+.register input {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgb(0, 0, 0);
+  display: block;
+  width: 93%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 20px;
+  margin: 20px 10px 5px 22px;
+}
+.rowoben input {
+  width: 75%;
+}
+body {
+  background-attachment: fixed;
+  background-image: url('../images/background_car.jpg');
+  background-size: cover;
+}

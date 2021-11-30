@@ -10,6 +10,10 @@
     <li th:each="car: ${cars}">
         <span th:text="${car.model}"> </span>
         <a th:href="@{/cars/{id} (id=${car.id})}">Details</a>
+
+        <form th:action="@{/deleteCar/{id}(id=${car.id})}" th:object="${car}" method="post">
+            <button type="submit" onClick="return confirm('Wollen Sie wirklich löschen?')">Löschen</button>
+        </form>
     </li>
 </ul>
 <h2> Neues Car erstellen</h2>

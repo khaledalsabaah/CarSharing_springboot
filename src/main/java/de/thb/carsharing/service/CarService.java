@@ -42,7 +42,7 @@ public class CarService {
                         .yearBuilt(yearBuilt)
                         .build());
     }
-
+    //hier bitte als bool damit ich das Löchen bestätigen kann
     public void deleteCarById(long id) { carRepository.deleteById(id);}
 
 
