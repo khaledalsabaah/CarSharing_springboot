@@ -23,7 +23,7 @@ import java.util.List;
 @Controller
 
 @AllArgsConstructor
-public class CustomerController {
+public class CustomerController{
 
     private final CustomerService customerService;
 
