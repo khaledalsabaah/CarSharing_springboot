@@ -28,6 +28,7 @@ public class Car {
     private boolean isAutomatic;
     private boolean isInService;
     private boolean isAvailable;
+    private boolean isOpen;
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private List<Booking> bookingList;
 }
