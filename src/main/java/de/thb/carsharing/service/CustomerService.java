@@ -31,4 +31,6 @@ public class CustomerService {
                         .driversLicenceID(driversLicenceID)
                         .build());
     }
+
+    public void deleteCarById(long id) { customerRepository.deleteById(id);}
 }
