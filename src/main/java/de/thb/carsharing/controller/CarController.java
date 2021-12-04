@@ -5,10 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import de.thb.carsharing.entity.*;
@@ -46,22 +43,37 @@ public class CarController {
         else
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
         model.addAttribute("car", car);
-        return "details";
+        return "html/cardetails";
     }
     @PostMapping("addcar")
     public String addCar(@Valid AddCarForm form, BindingResult result){
         //if(result.hasErrors())
         carService.addCar(form.getModel(), form.getCarColor(),form.getYearBuilt(), form.getFuelType(),
-                form.getXCoordinates(), form.getYCoordinates(), form.isAutomatic(), form.isAvailable(),
-                form.isInService());
+                form.getXCoordinates(), form.getYCoordinates(), form.isAutomatic());
         return "redirect:/cars";
     }
-    @PostMapping("/deleteCar/{id}")
-    public String deleteBuyer(@PathVariable Long id){
+    @PostMapping("/deletecar/{id}")
+    public String deleteCar(@PathVariable("id") Long id){
         carService.deleteCarById(id);
        // if (result.hasErrors())
         //    throw new ResponseStatusException((HttpStatus.NOT_FOUND));
 
         return "redirect:/cars";
+    }
+    @RequestMapping("opencar")
+    public String openCar(@RequestParam("id") Long id){
+        boolean exist = carService.openCar(id);
+        if(!exist)
+            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
+        else
+            return "redirect:/cars";
+    }
+    @RequestMapping("closecar")
+    public String closeCar(@RequestParam("id") Long id){
+        boolean exist = carService.closeCar(id);
+        if(!exist)
+            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
+        else
+            return "redirect:/cars";
     }
 }

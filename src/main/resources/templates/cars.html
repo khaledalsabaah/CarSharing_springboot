@@ -8,11 +8,18 @@
 <h1> Meine Cars im Überblick</h1>
 <ul>
     <li th:each="car: ${cars}">
-        <span th:text="${car.model}"> </span>
-        <a th:href="@{/cars/{id} (id=${car.id})}">Details</a>
-
-        <form th:action="@{/deleteCar/{id}(id=${car.id})}" th:object="${car}" method="post">
+        <h2 th:text="${car.model}"> </h2>
+        <form th:action=" @{/cars/{id} (id=${car.id})}">
+            <button type="submit" > Details</button>
+        </form>
+        <form th:action="@{/deletecar/{id}(id=${car.id})}" th:object="${car}" method="post">
             <button type="submit" onClick="return confirm('Wollen Sie wirklich löschen?')">Löschen</button>
+        </form>
+        <form th:action="@{/opencar (id=${car.id})}" th:object="${car}" method="post">
+            <button type="submit" onClick="return alert('das Auto wurde geöffnet!')">Öffne das Auto</button>
+        </form>
+        <form th:action="@{/closecar (id=${car.id})}" th:object="${car}" method="post">
+            <button type="submit" onClick="return alert('das Auto wurde geschloßen!')">Schliße das Auto</button>
         </form>
     </li>
 </ul>
