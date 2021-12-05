@@ -38,7 +38,7 @@ public class CustomerService {
     }
 
     public boolean modifyAccountDetails(long id, String firstName, String lastName, String driversLicenceID) {
-        if (customerRepository.findById(id).isPresent()) {
+        if (customerRepository.findById(id).isPresent()) { //TODO existsById(id) als alternative
             Customer customer = customerRepository.findById(id).get();
             customer.setFirstName(firstName);
             customer.setLastName(lastName);

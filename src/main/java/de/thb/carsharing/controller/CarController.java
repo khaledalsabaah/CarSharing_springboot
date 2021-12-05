@@ -32,7 +32,7 @@ public class CarController {
     public String showAvailableCars(Model model){
         List<Car> avaliableCarList= carService.getAllAvailableCars();
         model.addAttribute("availableCars", avaliableCarList);
-        return "cars";
+        return "availablecars";
     }
     @GetMapping("cars/{id}")
     public String showCarDetail(@PathVariable("id") Long id, Model model){

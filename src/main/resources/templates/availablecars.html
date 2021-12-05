@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Meine Cars</title>
+</head>
+<body>
+<h1> Meine Cars im Überblick</h1>
+<ul>
+    <li th:each="car: ${availableCars}">
+        <h2 th:text="${car.model}"> </h2>
+        <form th:action=" @{/cars/{id} (id=${car.id})}">
+            <button type="submit" > Details</button>
+        </form>
+        <form th:action="@{/deletecar/{id}(id=${car.id})}" th:object="${car}" method="post">
+            <button type="submit" onClick="return confirm('Wollen Sie wirklich löschen?')">Löschen</button>
+        </form>
+        <form th:action="@{/opencar (id=${car.id})}" th:object="${car}" method="post">
+            <button type="submit" onClick="return alert('das Auto wurde geöffnet!')">Öffne das Auto</button>
+        </form>
+        <form th:action="@{/closecar (id=${car.id})}" th:object="${car}" method="post">
+            <button type="submit" onClick="return alert('das Auto wurde geschloßen!')">Schliße das Auto</button>
+        </form>
+    </li>
+</ul>
+<h2> Neues Car erstellen</h2>
+<form action="http://localhost:8080/addcar" method ="post">
+    <b>Model: </b>
+    <input type ="text" name = "Model">
+    <b>Color: </b>
+    <input type ="color" name = "Color">
+    <input type ="submit" name = "Car anlegen">
+</form>
+</body>
+</html>
