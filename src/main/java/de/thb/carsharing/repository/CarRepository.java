@@ -9,7 +9,7 @@ import java.util.List;
 @RepositoryDefinition(domainClass = Car.class, idClass = Long.class)
 public interface CarRepository extends CrudRepository<Car, Long> {
 
-    List<Car> findByisAvailableTrue();
+    List<Car> findByAvailableTrue();
 
 
 }

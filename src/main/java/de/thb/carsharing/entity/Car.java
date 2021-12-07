@@ -25,10 +25,10 @@ public class Car {
     private FuelType fuelType;
     private double xCoordinates;
     private double yCoordinates;
-    private boolean isAutomatic;
-    private boolean isInService;
-    private boolean isAvailable;
-    private boolean isOpen;
+    private boolean automatic;
+    private boolean inService;
+    private boolean available;
+    private boolean open;
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private List<Booking> bookingList;
 }

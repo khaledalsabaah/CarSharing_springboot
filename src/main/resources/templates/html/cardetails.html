@@ -11,10 +11,10 @@
     <span th:text="'YearBuilt: '+${car.yearBuilt}"> </span><br />
     <span th:text="'XCoordinates: '+${car.XCoordinates}"> </span><br />
     <span th:text="'YCoordinates: '+${car.YCoordinates}"> yCoordinates: </span><br />
-    <span th:if="${car.isOpen}">car is open<br></span>
-    <span th:unless="${car.isOpen}">car is not open<br></span>
-    <span th:if="${car.isAvailable}">car is Available<br></span>
-    <span th:unless="${car.isAvailable}">car is not Available<br></span>
+    <span th:if="${car.open}">car is open<br></span>
+    <span th:unless="${car.open}">car is not open<br></span>
+    <span th:if="${car.available}">car is Available<br></span>
+    <span th:unless="${car.available}">car is not Available<br></span>
 </ul>
 <form th:action=" @{/cars}">
 <button type="submit" > Zurück!</button>

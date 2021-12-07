@@ -1,6 +1,5 @@
 package de.thb.carsharing.service;
 
-import de.thb.carsharing.entity.Booking;
 import de.thb.carsharing.entity.Car;
 import de.thb.carsharing.entity.Type.CarColor;
 import de.thb.carsharing.entity.Type.FuelType;
@@ -8,7 +7,6 @@ import de.thb.carsharing.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +25,7 @@ public class CarService {
     }
 
     public List<Car> getAllAvailableCars() {
-        return carRepository.findByisAvailableTrue();
+        return carRepository.findByAvailableTrue();
     }
 
     public Car addCar(String model, CarColor carColor, short yearBuilt, FuelType fuelType,
@@ -39,10 +37,10 @@ public class CarService {
                 .fuelType(fuelType)
                 .xCoordinates(xCoordinates)
                 .yCoordinates(yCoordinates)
-                .isAutomatic(isAutomatic)
-                .isAvailable(true)
-                .isInService(true)
-                .isOpen(false)
+                .automatic(isAutomatic)
+                .available(true)
+                .inService(true)
+                .open(false)
                 .build());
     }
 
