@@ -33,7 +33,7 @@ public class CustomerService {
                 .build());
     }
 
-    public void deleteCarById(long id) {
+    public void deleteCustomerById(long id) {
         customerRepository.deleteById(id);
     }
 

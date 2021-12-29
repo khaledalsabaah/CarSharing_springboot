@@ -14,14 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "carsharing_customer")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Customer extends User {
     private String firstName;
     private String lastName;
     private Date registrationDate;
     private String driversLicenceID;
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Booking> bookingList;
+//    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+//    private List<CreditCard> creditCardList;
 }
