@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.awt.*;
@@ -20,6 +23,8 @@ public class AddCarForm {
     @NotEmpty
     private String model;
     @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name="car_color")
     private CarColor carColor;
     @NotNull
     private short yearBuilt;
@@ -29,10 +34,6 @@ public class AddCarForm {
     private double xCoordinates;
     @NotNull
     private double yCoordinates;
-    @NotNull
+    //@NotNull
     private boolean isAutomatic;
-    @NotNull
-    private boolean isInService;
-    @NotNull
-    private boolean isAvailable;
 }

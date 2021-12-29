@@ -23,7 +23,7 @@ public class CarController {
     private final CarService carService;
 
     @GetMapping("cars")
-    public String showCars(Model model){
+    public String showAllCars(Model model){
         List<Car> carList= carService.getAllCars();
         model.addAttribute("cars", carList);
         return "cars";
@@ -71,6 +71,22 @@ public class CarController {
     @RequestMapping("closecar")
     public String closeCar(@RequestParam("id") Long id){
         boolean exist = carService.closeCar(id);
+        if(!exist)
+            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
+        else
+            return "redirect:/cars";
+    }
+    @RequestMapping("setcarinservice")
+    public String setCarInService(@RequestParam("id") Long id){
+        boolean exist = carService.setCarInService(id);
+        if(!exist)
+            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
+        else
+            return "redirect:/cars";
+    }
+    @RequestMapping("setcaroutofservice")
+    public String setCarOutOfService(@RequestParam("id") Long id){
+        boolean exist = carService.setCarOutOfService(id);
         if(!exist)
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
         else

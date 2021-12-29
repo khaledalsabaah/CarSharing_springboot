@@ -27,8 +27,13 @@
 <form action="http://localhost:8080/addcar" method ="post">
     <b>Model: </b>
     <input type ="text" name = "Model">
+    <b>Automatic: </b>
+    <input type ="checkbox" name = "isAutomatic"/>
     <b>Color: </b>
-    <input type ="color" name = "Color">
+    <select name="color">
+    <option th:each="colorOpt : ${T(de.thb.carsharing.entity.Type.CarColor).values()}"
+            th:value="${colorOpt}" th:text="${colorOpt}"></option>
+    </select>
     <input type ="submit" name = "Car anlegen">
 </form>
 </body>

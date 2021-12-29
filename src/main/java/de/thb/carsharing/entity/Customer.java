@@ -21,6 +21,16 @@ public class Customer extends User {
     private String driversLicenceID;
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Booking> bookingList;
+    //Telefonnummer
+    //Birthplace
+    //Birthdate
+    //street and hausnumber als string
+    //PLZ
+    //Ort
+    //isMale
+    //isFemale
+    //CreditCard nur eine
+
 //    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
 //    private List<CreditCard> creditCardList;
 }
