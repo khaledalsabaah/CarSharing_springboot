@@ -15,22 +15,27 @@ import java.util.List;
 @NoArgsConstructor
 @Entity(name = "carsharing_customer")
 public class Customer extends User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String firstName;
     private String lastName;
     private Date registrationDate;
     private String driversLicenceID;
+    private String phoneNumber;
+    //birthplace
+    private Date birthdate;
+    private String address;
+    private String zipcode;
+    private String city;
+    //gender
+
+    @OneToOne
+    private CreditCard creditCard;
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Booking> bookingList;
-    //Telefonnummer
-    //Birthplace
-    //Birthdate
-    //street and hausnumber als string
-    //PLZ
-    //Ort
-    //isMale
-    //isFemale
-    //CreditCard nur eine
 
 //    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
 //    private List<CreditCard> creditCardList;
+
 }
