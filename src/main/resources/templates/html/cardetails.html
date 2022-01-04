@@ -15,6 +15,8 @@
     <span th:unless="${car.open}">car is not open<br></span>
     <span th:if="${car.available}">car is Available<br></span>
     <span th:unless="${car.available}">car is not Available<br></span>
+    <span th:if="${car.automatic}">car is automatic<br></span>
+    <span th:unless="${car.automatic}">car is not automatic<br></span>
 </ul>
 <form th:action=" @{/cars}">
 <button type="submit" > Zurück!</button>
