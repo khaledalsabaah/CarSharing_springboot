@@ -47,7 +47,7 @@ public class CustomerController{
     @PostMapping("addcustomer")
     public String addCustomer(@Valid AddCustomerForm form, BindingResult result){
         //if(result.hasErrors())
-        customerService.addCustomer(form.getFirstName(), form.getLastName(), form.getRegistrationDate(),form.getDriversLicenceID());
+        customerService.addCustomer(form.getFirstName(), form.getLastName(),form.getDriversLicenceID());
 
         return "redirect:/customers";
     }

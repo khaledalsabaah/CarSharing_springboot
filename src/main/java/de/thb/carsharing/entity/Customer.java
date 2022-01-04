@@ -28,8 +28,6 @@ public class Customer extends User {
     private String address;
     private String zipcode;
     private String city;
-    //gender
-
     @OneToOne
     private CreditCard creditCard;
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)

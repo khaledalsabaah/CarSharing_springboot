@@ -28,6 +28,10 @@ public class CarController {
         model.addAttribute("cars", carList);
         return "cars";
     }
+    @GetMapping("addcar")
+    public String showAddCar(Model model){
+        return "addcar";
+    }
 
     @GetMapping("cars")
     public String showAllCars(Model model){
@@ -50,10 +54,10 @@ public class CarController {
         else
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
         model.addAttribute("car", car);
-        return "html/cardetails";
+        return "cardetails";
     }
-    @PostMapping("addcar")
-    public String addCar(@Valid AddCarForm form, BindingResult result){
+    @PostMapping("addcarform")
+    public String addcarform(@Valid AddCarForm form, BindingResult result){
         //if(result.hasErrors())
         carService.addCar(form.getModel(), form.getCarColor(),form.getYearBuilt(), form.getFuelType(),
                 form.getXCoordinates(), form.getYCoordinates(), form.isAutomatic());

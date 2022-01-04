@@ -21,18 +21,23 @@ import java.awt.*;
 public class AddCarForm {
     @NotNull
     @NotEmpty
+    private String preisPerHour;
+    @NotNull
+    @NotEmpty
     private String model;
     @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name="car_color")
     private CarColor carColor;
-//    @NotNull
+    @NotNull
     private short yearBuilt;
-//    @NotNull
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name="fuel_type")
     private FuelType fuelType;
-//    @NotNull
+    @NotNull
     private double xCoordinates;
-//    @NotNull
+    @NotNull
     private double yCoordinates;
     @NotNull
     private boolean automatic;

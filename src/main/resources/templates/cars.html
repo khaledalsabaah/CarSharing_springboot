@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Meine Cars</title>
@@ -23,7 +23,12 @@
         </form>
     </li>
 </ul>
+<form th:action="@{/addcar}" method ="Get">
+    <button type="submit"> Neues Auto</button>
+</form>
+
 <h2> Neues Car erstellen</h2>
+
 <form th:action="@{/addcar}" method ="post">
     <b>Model: </b>
     <input type ="text" name = "Model">
@@ -36,5 +41,6 @@
     </select>
     <input type ="submit" name = "Car anlegen">
 </form>
+
 </body>
 </html>

@@ -24,11 +24,10 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public Customer addCustomer(String firstName, String lastName, Date registrationDate, String driversLicenceID) {
+    public Customer addCustomer(String firstName, String lastName,String driversLicenceID) {
         return customerRepository.save(Customer.builder()
                 .firstName(firstName)
                 .lastName(lastName)
-                .registrationDate(registrationDate)
                 .driversLicenceID(driversLicenceID)
                 .build());
     }

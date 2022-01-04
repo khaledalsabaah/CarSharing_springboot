@@ -23,8 +23,24 @@ public class AddCustomerForm {
     @NotEmpty
     private String lastName;
     @NotNull
-    private Date registrationDate;
-    @NotNull
     @NotEmpty
     private String driversLicenceID;
+    @NotNull
+    @NotEmpty
+    private String email;
+    @NotNull
+    @NotEmpty
+    private String phoneNumber;
+    @NotNull
+    @NotEmpty
+    private String password;
+    @NotNull
+    private Date birthdate;
+    private String address;
+    private String zipcode;
+    private String city;
+    //Credit card
+    private String number;
+    private String csv;
+    private Date expirationDate;
 }

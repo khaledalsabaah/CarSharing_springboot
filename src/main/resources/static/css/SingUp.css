@@ -1,5 +1,5 @@
 .container {
-  background: rgba(177, 199, 168, 0.7);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
   width: 700px;
@@ -37,7 +37,7 @@ fa fa-credit-card {
   width: 50%;
 }
 .register input {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(f, f, f, 0.4);
   border: 2px solid rgb(0, 0, 0);
   display: block;
   width: 93%;
@@ -47,10 +47,48 @@ fa fa-credit-card {
   margin: 20px 10px 5px 22px;
 }
 .rowoben input {
-  width: 75%;
+  width: 71%;
+}
+.rowoben-login{
+display: block;
+margin-left: auto;
+margin-right: auto
 }
 body {
+  color: white;
   background-attachment: fixed;
-  background-image: url('../images/background_car.jpg');
+  background-image: url("../images/hero_1.jpg");
   background-size: cover;
+}
+
+#box {
+  display: flex;
+}
+
+.add input {
+  border: 2px solid rgb(0, 0, 0);
+  display: block;
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 50px;
+}
+.formcar {
+  width: 90%;
+}
+
+select {
+  width: 75%;
+
+  -moz-padding-start: calc(10px - 3px);
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid #000000;
+  display: block;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }

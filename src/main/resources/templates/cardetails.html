@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto</title>
+</head>
+<body>
+<h1 th:text="${car.model}"></h1>
+<ul>
+  <span th:text=" 'ID: '+ ${car.id}"> </span><br />
+  <span th:text="'YearBuilt: '+${car.yearBuilt}"> </span><br />
+  <span th:text="'XCoordinates: '+${car.XCoordinates}"> </span><br />
+  <span th:text="'YCoordinates: '+${car.YCoordinates}"> yCoordinates: </span><br />
+  <span th:if="${car.open}">car is open<br></span>
+  <span th:unless="${car.open}">car is not open<br></span>
+  <span th:if="${car.available}">car is Available<br></span>
+  <span th:unless="${car.available}">car is not Available<br></span>
+  <span th:if="${car.automatic}">car is automatic<br></span>
+  <span th:unless="${car.automatic}">car is not automatic<br></span>
+</ul>
+<form th:action=" @{/cars}">
+  <button type="submit" > Zurück!</button>
+</form>
+<div sec:authorize="isAuthenticated()">
+<form th:action="@{/addbooking (carid=${car.id})}" th:object="${car}" method="post" >
+  <button type="submit" onClick="return alert('die Buchung startet!')">Buche das Auto</button>
+</form>
+</div>
+
+</body>
+</html>
