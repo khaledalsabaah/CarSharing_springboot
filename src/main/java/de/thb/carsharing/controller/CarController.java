@@ -22,6 +22,13 @@ public class CarController {
 
     private final CarService carService;
 
+    @GetMapping("/")
+    public String showHome(Model model){
+        List<Car> carList= carService.getAllCars();
+        model.addAttribute("cars", carList);
+        return "cars";
+    }
+
     @GetMapping("cars")
     public String showAllCars(Model model){
         List<Car> carList= carService.getAllCars();

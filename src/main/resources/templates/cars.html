@@ -26,9 +26,9 @@
 <h2> Neues Car erstellen</h2>
 <form action="http://localhost:8080/addcar" method ="post">
     <b>Model: </b>
-    <input type ="text" name = "Model">
+    <input type ="text" name = "model">
     <b>Automatic: </b>
-    <input type ="checkbox" name = "isAutomatic"/>
+    <input type ="checkbox" name = "automatic"/>
     <b>Color: </b>
     <select name="color">
     <option th:each="colorOpt : ${T(de.thb.carsharing.entity.Type.CarColor).values()}"
