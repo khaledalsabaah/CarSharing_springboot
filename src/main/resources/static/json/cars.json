@@ -1,0 +1,38 @@
+{
+  "1": {
+    "price": 130,
+    "lat": 52.41039253373216,
+    "lng": 12.536652219669774,
+    "brand": "BMW",
+    "color": "red",
+    "img": "images/hero_1.jpg",
+    "available": true
+  },
+  "2": {
+    "price": 150,
+    "lat": 52.41293023325759,
+    "lng": 12.538365008902971,
+    "brand": "VW",
+    "color": "green",
+
+    "available": true
+  },
+  "3": {
+    "price": 170,
+    "lat": 52.410909554526505,
+    "lng": 12.53967775117165,
+    "brand": "Opel",
+    "color": "white",
+
+    "available": true
+  },
+  "4": {
+    "price": 190,
+    "lat": 52.410909554526505,
+    "lng": 12.53967775117165,
+    "brand": "AUDI",
+    "color": "white",
+
+    "available": true
+  }
+}

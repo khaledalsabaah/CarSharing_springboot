@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hinzufügen eines Autos</title>
+    <link rel="stylesheet" href="../static/css/SingUp.css" th:href="@{/css/SingUp.css}"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="formcar">
+        <div class="rowoben">
+          <h2>Hinzufügen eines Autos</h2>
+          <form th:action="@{addcarform}" method ="post">
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Marke und Modell" name = "model" />
+            <div class="input-icon"><i class="fa fa-envelope"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Price" name = "preisPerHour"/>
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Lat" name = "xCoordinates"/>
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Lng" name = "yCoordinates"/>
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Herstellungsjahr" name = "yearBuilt"/>
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+          </div>
+
+            <select name="carColor">
+              <option value="" disabled selected hidden>
+                Autofarbe
+              </option>
+                <option th:each="colorOpt : ${T(de.thb.carsharing.entity.Type.CarColor).values()}"
+                        th:value="${colorOpt}" th:text="${colorOpt}"></option>
+              </select>
+
+            <select name="fuelType" >
+              <option value="" disabled selected hidden>
+                Kraftstoffart
+              </option>
+             <option th:each="fuelType : ${T(de.thb.carsharing.entity.Type.FuelType).values()}"
+                     th:value="${fuelType}" th:text="${fuelType}"></option>
+           </select>
+            <input id="confirm" type="checkbox" name = "automatic"/><label for="confirm">Automatik</label>
+          <form th:action=" @{/cars}">
+            <div class="add"><input type="submit" value="Speichern" /></div>
+          </form>
+        </form>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>
