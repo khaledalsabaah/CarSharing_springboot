@@ -5,6 +5,8 @@ import de.thb.carsharing.entity.Car;
 import de.thb.carsharing.entity.Customer;
 import de.thb.carsharing.entity.Type.BookingStatus;
 import de.thb.carsharing.repository.BookingRepository;
+import de.thb.carsharing.repository.CarRepository;
+import de.thb.carsharing.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class BookingService {
 
     private final BookingRepository bookingRepository;
+    private final CarRepository carRepository;
+    private final CustomerRepository customerRepository;
 
     public List<Booking> getAllBookings() {
         return (List<Booking>) bookingRepository.findAll();
@@ -26,13 +30,17 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
-    public Booking addBooking(Car car, Customer customer) {
-        return bookingRepository.save(Booking.builder()
-                .car(car)
-                .customer(customer)
-                .startTime(new Date())
-                .bookingStatus(BookingStatus.ORDERED)
-                .build());
+    public Booking addBooking(long carID, long customerID) { //TODO: IDs anstatt Entities
+        if(carRepository.existsById(carID) && customerRepository.existsById(customerID)){
+            return bookingRepository.save(Booking.builder()
+                    .car(carRepository.findById(carID).get())
+                    .customer(customerRepository.findById(customerID).get())
+                    .startTime(new Date())
+                    .bookingStatus(BookingStatus.ORDERED)
+                    .build());
+        } else {
+            return null;
+        }
     }
 
     public void deleteCarById(long id) {
@@ -53,4 +61,6 @@ public class BookingService {
         else
             return BookingStatus.NONEXISTENT;
     }
+
+    //TODO: calculateCarDistance()
 }

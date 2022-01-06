@@ -20,4 +20,6 @@ public class ExampleUserDetails implements UserDetails {
 	private boolean credentialsNonExpired;
 	private boolean enabled;
 	private final Collection<? extends GrantedAuthority> authorities;
+
+	private long id;
 }

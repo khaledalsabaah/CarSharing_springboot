@@ -23,7 +23,6 @@ public class Customer extends User {
     private Date registrationDate;
     private String driversLicenceID;
     private String phoneNumber;
-    //birthplace
     private Date birthdate;
     private String address;
     private String zipcode;

@@ -25,6 +25,7 @@ public class Car {
     private FuelType fuelType;
     private double xCoordinates;
     private double yCoordinates;
+    private double pricePerHour;
     private boolean automatic;
     private boolean inService;
     private boolean available;
