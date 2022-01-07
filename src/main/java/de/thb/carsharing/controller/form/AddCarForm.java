@@ -20,8 +20,7 @@ import java.awt.*;
 @NoArgsConstructor
 public class AddCarForm {
     @NotNull
-    @NotEmpty
-    private String preisPerHour;
+    private double preisPerHour;
     @NotNull
     @NotEmpty
     private String model;

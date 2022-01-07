@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,8 +48,10 @@ public class CustomerController{
     @PostMapping("addcustomer")
     public String addCustomer(@Valid AddCustomerForm form, BindingResult result){
         //if(result.hasErrors())
-        customerService.addCustomer(form.getFirstName(), form.getLastName(),form.getDriversLicenceID());
+        customerService.addCustomer(form.getFirstName(), form.getLastName() , form.getDriversLicenceID(), form.getPhoneNumber(),
+                form.getBirthdate(), form.getAddress(), form.getZipcode(), form.getCity(),
+                form.getCreditCardNumber(),form.getCreditCardCSV(),form.getCreditCardExpirationDate());
 
-        return "redirect:/customers";
+        return "redirect:/index";
     }
 }

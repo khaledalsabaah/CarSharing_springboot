@@ -1,5 +1,7 @@
 package de.thb.carsharing.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -24,15 +26,25 @@ public class CarController {
 
     @GetMapping("/")
     public String showHome(Model model){
-        List<Car> carList= carService.getAllCars();
-        model.addAttribute("cars", carList);
-        return "cars";
+        List<Car> cars= carService.getAllCars();
+        String carAsString ="";
+        if(cars.size()>0)
+            carAsString = getCarsAsString(cars);
+        model.addAttribute("cars", carAsString);
+        return "index";
     }
+
     @GetMapping("addcar")
     public String showAddCar(Model model){
         return "addcar";
     }
-
+    @PostMapping("addcarform")
+    public String addcarform(@Valid AddCarForm form, BindingResult result){
+        //if(result.hasErrors())
+        carService.addCar(form.getModel(), form.getCarColor(),form.getYearBuilt(), form.getFuelType(),
+                form.getXCoordinates(), form.getYCoordinates(),form.getPreisPerHour(), form.isAutomatic());
+        return "redirect:/";
+    }
     @GetMapping("cars")
     public String showAllCars(Model model){
         List<Car> carList= carService.getAllCars();
@@ -56,13 +68,7 @@ public class CarController {
         model.addAttribute("car", car);
         return "cardetails";
     }
-    @PostMapping("addcarform")
-    public String addcarform(@Valid AddCarForm form, BindingResult result){
-        //if(result.hasErrors())
-        carService.addCar(form.getModel(), form.getCarColor(),form.getYearBuilt(), form.getFuelType(),
-                form.getXCoordinates(), form.getYCoordinates(), form.isAutomatic());
-        return "redirect:/cars";
-    }
+
     @PostMapping("/deletecar/{id}")
     public String deleteCar(@PathVariable("id") Long id){
         carService.deleteCarById(id);
@@ -103,4 +109,22 @@ public class CarController {
         else
             return "redirect:/cars";
     }
+
+    public String getCarsAsString(List<Car> cars) {
+        String carAsString;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            carAsString = String.format("{ \"%d\": ", cars.get(0).getId());
+            for (int i = 0; i< cars.size(); i++){
+                carAsString += objectMapper.writeValueAsString(cars.get(i));
+                if(i+1 != cars.size())
+                    carAsString += String.format(",\"%d\": ", cars.get(i + 1).getId());
+            }
+            carAsString += "}";
+        } catch (JsonProcessingException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Json Convertor Error", e);
+        }
+        return carAsString;
+    }
+
 }

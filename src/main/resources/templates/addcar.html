@@ -20,11 +20,11 @@
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Lat" name = "xCoordinates"/>
+            <input type="text" placeholder="xCoordinates" name = "xCoordinates"/>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Lng" name = "yCoordinates"/>
+            <input type="text" placeholder="Lng" yCoordinates name = "yCoordinates"/>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
@@ -48,7 +48,7 @@
                      th:value="${fuelType}" th:text="${fuelType}"></option>
            </select>
             <input id="confirm" type="checkbox" name = "automatic"/><label for="confirm">Automatik</label>
-          <form th:action=" @{/cars}">
+          <form th:action=" @{/}">
             <div class="add"><input type="submit" value="Speichern" /></div>
           </form>
         </form>

@@ -28,8 +28,8 @@ public class CarService {
         return carRepository.findByAvailableTrue();
     }
 
-    public Car addCar(String model, CarColor carColor, short yearBuilt, FuelType fuelType, double pricePerHour,
-                      double xCoordinates, double yCoordinates, boolean isAutomatic) {
+    public Car addCar(String model, CarColor carColor, short yearBuilt, FuelType fuelType,
+                      double xCoordinates, double yCoordinates,double pricePerHour, boolean isAutomatic) {
         return carRepository.save(Car.builder()
                 .model(model)
                 .carColor(carColor)

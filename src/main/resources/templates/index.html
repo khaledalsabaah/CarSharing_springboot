@@ -1,130 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="../static/fonts/icomoon/style.css" />
-
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" />
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
-
-    <!-- Style -->
-    <link rel="stylesheet" href="../static/css/style.css" />
-
-    <title>!Car sharing THB!</title>
-  </head>
-  <body>
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+            <span class="icon-close2 js-menu-toggle"></span>
         </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
     </div>
-    <!-- .site-mobile-menu -->
+    <div class="site-mobile-menu-body"></div>
+</div>
+<!-- .site-mobile-menu -->
 
-    <!-- NAVBAR -->
-    <header class="site-navbar mt-3">
-      <div class="container-fluid">
+<!-- NAVBAR -->
+<header class="site-navbar mt-3">
+    <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="site-logo col-6">
-            <a href="index.html">car sharing THB</a>
-          </div>
+            <div class="site-logo col-6">
+                <a href="index.html">car sharing THB</a>
+            </div>
 
-          <nav class="mx-auto site-navigation">
-            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-              <li><a href="index.html" class="nav-link active">Home</a></li>
-              <li><a href="about.html">About</a></li>
+            <nav class="mx-auto site-navigation">
+                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
 
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li>
-                <a href="AddCar.html"><span class="mr-2">+</span> Add Car</a>
-              </li>
-              <li class="d-lg-none">
-                <a href="SingUp.html"><span class="mr-2">+</span> SingUp</a>
-              </li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <sec:authorize access="hasRole(['ROLE_ADMIN'])">
+                        <li>
+                            <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
+                        </li>
+                    </sec:authorize>
+                    <li class="d-lg-none">
+                        <a href="SingUp.html"><span class="mr-2">+</span> SingUp</a>
+                    </li>
 
-              <li class="d-lg-none"><a href="login.html">Log In</a></li>
-            </ul>
-          </nav>
+                    <li class="d-lg-none"><a href="login.html">Log In</a></li>
+                </ul>
+            </nav>
 
-          <div
-            class="right-cta-menu text-right d-flex aligin-items-center col-6"
-          >
-            <div class="ml-auto">
-              <a
-                href="SingUp.html"
-                class="
+            <div
+                    class="right-cta-menu text-right d-flex aligin-items-center col-6"
+            >
+                <div class="ml-auto">
+                    <a
+                            href="SingUp.html"
+                            class="
                   btn btn-outline-white
                   border-width-2
                   d-none d-lg-inline-block
                 "
-                ><span class="mr-2 icon-add"></span>SingUp</a
-              >
-              <a
-                href="login.html"
-                class="btn btn-primary border-width-2 d-none d-lg-inline-block"
-                ><span class="mr-2 icon-lock_outline"></span>Log In</a
-              >
-            </div>
-            <a
-              href="#"
-              class="
+                    ><span class="mr-2 icon-add"></span>SingUp</a
+                    >
+                    <a
+                            href="login.html"
+                            class="btn btn-primary border-width-2 d-none d-lg-inline-block"
+                    ><span class="mr-2 icon-lock_outline"></span>Log In</a
+                    >
+                </div>
+                <a
+                        href="#"
+                        class="
                 site-menu-toggle
                 js-menu-toggle
                 d-inline-block d-xl-none
                 mt-lg-2
                 ml-3
               "
-              ><span class="icon-menu h3 m-0 p-0 mt-2"></span
-            ></a>
-          </div>
+                ><span class="icon-menu h3 m-0 p-0 mt-2"></span
+                ></a>
+            </div>
         </div>
-      </div>
-    </header>
+    </div>
+</header>
 
-    <div class="hero" style="background-image: url('../static/images/hero_1.jpg')"></div>
+<div class="hero" style="'background-image: url('/images/hero_1.jpg')'"></div>
 
-    <!-- Google Maps -->
-    <div
-      id="csMap"
-      class="cs-map"
-      data-cs-merkers='{ "1": { "price": 130, "lat": 52.41039253373216, "lng": 12.536652219669774, "brand": "BMW", "color": "red", "available": true }, "2": { "price": 150, "lat": 52.41293023325759, "lng": 12.538365008902971, "brand": "VW", "color": "green", "available": true }, "3": { "price": 170, "lat": 52.410909554526505, "lng": 12.53967775117165, "brand": "Opel", "color": "white", "available": true } }'
-    ></div>
+<!-- Google Maps -->
+<div
+        id="csMap"
+        class="cs-map"
+        data-cs-merkers='{ "2": {"id":2,"model":"VW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41039253373216,"ycoordinates":12.536652219669774},"3": {"id":3,"model":"BMW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41293023325759,"ycoordinates":12.538365008902971},"4": {"id":4,"model":"VW GTI","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":25.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.536652219669774},"5": {"id":5,"model":"Audi","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":40.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.53967775117165}}'
+></div>
 
-    <!-- Booking Section -->
-    <section class="cs-booking">
-      <img class="cs-car-image" src="" />
-      <h3 class="cs-car-brand"></h3>
-      <p class="cs-color">Color</p>
-      <p class="cs-address">Potsdam</p>
-      <p class="cs-price-per-hour">Preis pro Stunde <span></span></p>
-      <a class="cs-book-now" id="csBookNow" data-car-id="">Jetzt buchen</a>
-    </section>
 
-    <script src="../static/js/jquery-3.3.1.min.js"></script>
-    <script src="../static/js/popper.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/jquery.sticky.js"></script>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc0TEu2s9XA77NASIjZxlh1xEtzUXY8w&callback=initMap"
-    ></script>
-    <script src="../static/js/cs-google-maps.js"></script>
-  </body>
+<!-- Booking Section -->
+<section class="cs-booking">
+    <img class="cs-car-image" src=""/>
+    <h3 class="cs-car-brand"></h3>
+    <p class="cs-color">Color</p>
+    <p class="cs-address">Potsdam</p>
+    <p class="cs-price-per-hour">Preis pro Stunde <span></span></p>
+    <a class="cs-book-now" id="csBookNow" data-car-id="">Jetzt buchen</a>
+</section>
+
+<script th:inline="javascript">
+    let carsAsString = [[${cars}]];
+</script>
+
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script src="../static/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../static/js/jquery.sticky.js" th:src="@{/js/jquery.sticky.js}"></script>
+<script
+        async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc0TEu2s9XA77NASIjZxlh1xEtzUXY8w&callback=initMap"
+></script>
+<script src="../static/js/cs-google-maps.js" th:src="@{/js/cs-google-maps.js}"></script>
+</body>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap"
+            crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="../static/fonts/icomoon/style.css" th:href="@{/fonts/icomoon/style.css}"/>
+
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" th:href="@{/css/owl.carousel.min.css}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+
+    <!-- Style -->
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+
+    <title>Car sharing THB</title>
+</head>
 </html>

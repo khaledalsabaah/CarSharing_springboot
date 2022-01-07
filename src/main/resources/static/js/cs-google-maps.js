@@ -14,7 +14,8 @@ function initMap() {
 
 
     // Markers
-    let markers = jQuery.parseJSON($('#csMap').attr('data-cs-merkers'));
+    //let markers = jQuery.parseJSON($('#csMap').attr('data-cs-merkers'));
+    let markers = jQuery.parseJSON(carsAsString);
 
     
 
@@ -22,14 +23,14 @@ function initMap() {
         // Add marker
         const car = markers[key];
         if (car.available) {
-            const lat = car.lat;
-            const lng = car.lng;
+            const lat = car.xcoordinates;
+            const lng = car.ycoordinates;
             const coords = {lat, lng};
             const cardAddress = 'Potsdam';
-            const content = car.brand;
-            const price = car.price;
-            const carId = key;
-            const carColor = car.color;
+            const content = car.model;
+            const price = car.pricePerHour;
+            const carId = car.id;
+            const carColor = car.carColor;
             const carImg = car.img;
             const props = {coords, cardAddress, content, price, carId, carColor, carImg };
             addMarker(props);
@@ -67,7 +68,8 @@ function initMap() {
         var marker = new google.maps.Marker({
             position: props.coords,
             map: map,
-            icon: '../static/images/icons8-car-sharing-64.png'
+            //icon: '../static/images/icons8-car-sharing-64.png'
+            icon: '/images/icons8-car-sharing-64.png'
         });
 
 

@@ -40,7 +40,7 @@ public class AddCustomerForm {
     private String zipcode;
     private String city;
     //Credit card
-    private String number;
-    private String csv;
-    private Date expirationDate;
+    private String creditCardNumber;
+    private String creditCardCSV;
+    private Date creditCardExpirationDate;
 }
