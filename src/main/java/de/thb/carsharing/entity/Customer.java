@@ -27,7 +27,7 @@ public class Customer extends User {
     private String address;
     private String zipcode;
     private String city;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private CreditCard creditCard;
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Booking> bookingList;

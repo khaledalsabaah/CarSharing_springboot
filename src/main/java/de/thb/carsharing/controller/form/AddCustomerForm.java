@@ -1,7 +1,5 @@
 package de.thb.carsharing.controller.form;
 
-import de.thb.carsharing.entity.Type.CarColor;
-import de.thb.carsharing.entity.Type.FuelType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +26,6 @@ public class AddCustomerForm {
     @NotNull
     @NotEmpty
     private String email;
-
     private String phoneNumber;
     @NotNull
     @NotEmpty

@@ -1,6 +1,7 @@
 package de.thb.carsharing.service;
 
-import de.thb.carsharing.entity.Booking;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import de.thb.carsharing.entity.CreditCard;
 import de.thb.carsharing.entity.Customer;
 import de.thb.carsharing.repository.CustomerRepository;
@@ -14,6 +15,9 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class CustomerService {
+
+    @Autowired
+    private final PasswordEncoder passwordEncoder;
 
     private final CustomerRepository customerRepository;
 
@@ -41,7 +45,7 @@ public class CustomerService {
                 .creditCard(new CreditCard(creditCardNumber, creditCardCSV, creditCardExpirationDate))
                 .build();
         newCustomer.setEmail(email);
-        newCustomer.setPassword(password);
+        newCustomer.setPassword(passwordEncoder.encode(password));
         return customerRepository.save(newCustomer);
     }
 

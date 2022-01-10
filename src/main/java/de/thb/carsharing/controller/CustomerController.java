@@ -50,7 +50,7 @@ public class CustomerController{
     public String showSignup(Model model){
         return "signup";
     }
-    @PostMapping("sigupform")
+    @PostMapping("addcustomerform")
     public String addCustomer(@Valid AddCustomerForm form, BindingResult result){
         //if(result.hasErrors())
         customerService.addCustomer(form.getEmail(),form.getPassword(),form.getFirstName(), form.getLastName() , form.getDriversLicenceID(), form.getPhoneNumber(),
