@@ -27,13 +27,14 @@
 
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <sec:authorize access="hasRole(['ROLE_ADMIN'])">
                         <li>
-                            <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
+                            <sec:authorize access="hasRole(['ROLE_ADMIN'])">
+                                <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
+                            </sec:authorize>
+
                         </li>
-                    </sec:authorize>
                     <li class="d-lg-none">
-                        <a href="SingUp.html"><span class="mr-2">+</span> SingUp</a>
+                        <a href="singup.html" th:href="@{/signup}"><span class="mr-2">+</span> SingUp</a>
                     </li>
 
                     <li class="d-lg-none"><a href="login.html">Log In</a></li>
@@ -45,12 +46,14 @@
             >
                 <div class="ml-auto">
                     <a
-                            href="SingUp.html"
+                            href="signup.html"
+                            th:href="@{/signup}"
                             class="
                   btn btn-outline-white
                   border-width-2
                   d-none d-lg-inline-block
                 "
+
                     ><span class="mr-2 icon-add"></span>SingUp</a
                     >
                     <a
@@ -75,7 +78,7 @@
     </div>
 </header>
 
-<div class="hero" style="'background-image: url('/images/hero_1.jpg')'"></div>
+<div class="hero" style="background-image: url('/images/hero_1.jpg')"></div>
 
 <!-- Google Maps -->
 <div

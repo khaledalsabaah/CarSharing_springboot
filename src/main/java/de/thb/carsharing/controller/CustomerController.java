@@ -45,10 +45,15 @@ public class CustomerController{
         model.addAttribute("customer", customer);
         return "details";
     }
-    @PostMapping("addcustomer")
+
+    @GetMapping("signup")
+    public String showSignup(Model model){
+        return "signup";
+    }
+    @PostMapping("sigupform")
     public String addCustomer(@Valid AddCustomerForm form, BindingResult result){
         //if(result.hasErrors())
-        customerService.addCustomer(form.getFirstName(), form.getLastName() , form.getDriversLicenceID(), form.getPhoneNumber(),
+        customerService.addCustomer(form.getEmail(),form.getPassword(),form.getFirstName(), form.getLastName() , form.getDriversLicenceID(), form.getPhoneNumber(),
                 form.getBirthdate(), form.getAddress(), form.getZipcode(), form.getCity(),
                 form.getCreditCardNumber(),form.getCreditCardCSV(),form.getCreditCardExpirationDate());
 

@@ -28,19 +28,29 @@ public class AddCustomerForm {
     @NotNull
     @NotEmpty
     private String email;
-    @NotNull
-    @NotEmpty
+
     private String phoneNumber;
     @NotNull
     @NotEmpty
     private String password;
     @NotNull
     private Date birthdate;
+    @NotNull
+    @NotEmpty
     private String address;
+    @NotNull
+    @NotEmpty
     private String zipcode;
+    @NotNull
+    @NotEmpty
     private String city;
     //Credit card
+    @NotNull
+    @NotEmpty
     private String creditCardNumber;
+    @NotNull
+    @NotEmpty
     private String creditCardCSV;
+    //@NotNull
     private Date creditCardExpirationDate;
 }
