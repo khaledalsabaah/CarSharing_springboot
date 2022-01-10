@@ -25,10 +25,10 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public Customer addCustomer(String firstName, String lastName, String driversLicenceID, String phoneNumber,
-                                Date birthdate, String address, String zipcode, String city,
+    public Customer addCustomer(String email, String password, String firstName, String lastName, String driversLicenceID,
+                                String phoneNumber, Date birthdate, String address, String zipcode, String city,
                                 String creditCardNumber, String creditCardCSV, Date creditCardExpirationDate) {
-        return customerRepository.save(Customer.builder()
+        Customer newCustomer = Customer.builder()
                 .firstName(firstName)
                 .lastName(lastName)
                 .registrationDate(new Date())
@@ -39,7 +39,10 @@ public class CustomerService {
                 .zipcode(zipcode)
                 .city(city)
                 .creditCard(new CreditCard(creditCardNumber, creditCardCSV, creditCardExpirationDate))
-                .build());
+                .build();
+        newCustomer.setEmail(email);
+        newCustomer.setPassword(password);
+        return customerRepository.save(newCustomer);
     }
 
     public void deleteCustomerById(long id) {

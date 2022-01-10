@@ -32,6 +32,7 @@ public class Customer extends User {
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
     private List<Booking> bookingList;
 
+
 //    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
 //    private List<CreditCard> creditCardList;
 
