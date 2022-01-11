@@ -12,9 +12,6 @@
 </div>
 <!-- .site-mobile-menu -->
 
-<div sec:authorize="isAuthenticated()">
-    <span class="badge badge-dark" th:inline="text">Angemeldet als <span th:text="${#authentication.name}"></span></span>
-</div>
 
 <!-- NAVBAR -->
 <header class="site-navbar mt-3">
@@ -22,6 +19,10 @@
         <div class="row align-items-center">
             <div class="site-logo col-6">
                 <a href="index.html">car sharing THB</a>
+                <div sec:authorize="isAuthenticated()">
+                    <span class="badge badge-dark" th:inline="text">Angemeldet als <span
+                            th:text="${#authentication.name}"></span></span>
+                </div>
             </div>
 
             <nav class="mx-auto site-navigation">
@@ -31,14 +32,17 @@
 
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                        <li sec:authorize="hasAuthority('ROLE_ADMIN')">
-                                <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
-                        </li>
-                    <li class="d-lg-none">
+                    <li sec:authorize="hasAuthority('ROLE_ADMIN')">
+                        <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
+                    </li>
+
+                    <li class="d-lg-none" sec:authorize="!isAuthenticated()">
                         <a href="singup.html" th:href="@{/signup}"><span class="mr-2">+</span> SingUp</a>
                     </li>
 
-                    <li class="d-lg-none"><a href="login.html" th:href="@{/login}">Log In</a></li>
+                    <li class="d-lg-none" sec:authorize="!isAuthenticated()">
+                        <a href="login.html" th:href="@{/login}">Log In</a>
+                    </li>
                 </ul>
             </nav>
 
@@ -47,6 +51,7 @@
             >
                 <div class="ml-auto">
                     <a
+                            sec:authorize="!isAuthenticated()"
                             href="signup.html"
                             th:href="@{/signup}"
                             class="
@@ -55,13 +60,21 @@
                   d-none d-lg-inline-block
                 "
 
-                    ><span class="mr-2 icon-add"></span>SingUp</a
-                    >
+                    ><span class="mr-2 icon-add"></span>Regestrieren</a>
                     <a
-                            href="login.html"
-                            class="btn btn-primary border-width-2 d-none d-lg-inline-block"
-                    ><span class="mr-2 icon-lock_outline"></span>Log In</a
+                        href="/login"
+                        class="btn btn-primary border-width-2 d-none d-lg-inline-block"
+                        sec:authorize="!isAuthenticated()"
                     >
+                        <span class="mr-2 icon-lock_outline"></span>Anmelden
+                    </a>
+                    <a
+                            href="/logout"
+                            class="btn btn-primary border-width-2 d-none d-lg-inline-block"
+                            sec:authorize="isAuthenticated()"
+                    >
+                        <span class="mr-2 icon-lock_outline"></span>Abmelden
+                    </a>
                 </div>
                 <a
                         href="#"
@@ -79,7 +92,7 @@
     </div>
 </header>
 
-<div class="hero" style="background-image: url('/images/hero_1.jpg')"></div>
+<div class="hero" style="background-image: url('../static/images/hero_1.jpg')"  th:style="|background-image: url(@{/images/hero_1.jpg})|"></div>
 
 <!-- Google Maps -->
 <div
