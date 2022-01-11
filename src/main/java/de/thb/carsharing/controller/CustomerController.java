@@ -57,6 +57,6 @@ public class CustomerController{
                 form.getBirthdate(), form.getAddress(), form.getZipcode(), form.getCity(),
                 form.getCreditCardNumber(),form.getCreditCardCSV(),form.getCreditCardExpirationDate());
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

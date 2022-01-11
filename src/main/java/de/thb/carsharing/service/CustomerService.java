@@ -46,6 +46,7 @@ public class CustomerService {
                 .build();
         newCustomer.setEmail(email);
         newCustomer.setPassword(passwordEncoder.encode(password));
+        newCustomer.setEnabled(true);
         return customerRepository.save(newCustomer);
     }
 

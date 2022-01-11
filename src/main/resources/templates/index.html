@@ -12,6 +12,10 @@
 </div>
 <!-- .site-mobile-menu -->
 
+<div sec:authorize="isAuthenticated()">
+    <span class="badge badge-dark" th:inline="text">Angemeldet als <span th:text="${#authentication.name}"></span></span>
+</div>
+
 <!-- NAVBAR -->
 <header class="site-navbar mt-3">
     <div class="container-fluid">
@@ -27,17 +31,14 @@
 
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                        <li>
-                            <sec:authorize access="hasRole(['ROLE_ADMIN'])">
+                        <li sec:authorize="hasAuthority('ROLE_ADMIN')">
                                 <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
-                            </sec:authorize>
-
                         </li>
                     <li class="d-lg-none">
                         <a href="singup.html" th:href="@{/signup}"><span class="mr-2">+</span> SingUp</a>
                     </li>
 
-                    <li class="d-lg-none"><a href="login.html">Log In</a></li>
+                    <li class="d-lg-none"><a href="login.html" th:href="@{/login}">Log In</a></li>
                 </ul>
             </nav>
 
