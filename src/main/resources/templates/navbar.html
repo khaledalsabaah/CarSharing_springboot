@@ -1,6 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap"
+                crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" href="../static/fonts/icomoon/style.css" th:href="@{/fonts/icomoon/style.css}"/>
+
+        <link rel="stylesheet" href="../static/css/owl.carousel.min.css" th:href="@{/css/owl.carousel.min.css}"/>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+
+        <!-- Style -->
+        <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"/>
+
+        <title>Car sharing THB</title>
+
+</head>
 <body>
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
@@ -10,10 +40,6 @@
     </div>
     <div class="site-mobile-menu-body"></div>
 </div>
-<!-- .site-mobile-menu -->
-
-
-<!-- NAVBAR -->
 <header class="site-navbar mt-3">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -62,9 +88,9 @@
 
                     ><span class="mr-2 icon-add"></span>Regestrieren</a>
                     <a
-                        href="/login"
-                        class="btn btn-primary border-width-2 d-none d-lg-inline-block"
-                        sec:authorize="!isAuthenticated()"
+                            href="/login"
+                            class="btn btn-primary border-width-2 d-none d-lg-inline-block"
+                            sec:authorize="!isAuthenticated()"
                     >
                         <span class="mr-2 icon-lock_outline"></span>Anmelden
                     </a>
@@ -94,64 +120,14 @@
 
 <div class="hero" style="background-image: url('../static/images/hero_1.jpg')"  th:style="|background-image: url(@{/images/hero_1.jpg})|"></div>
 
-<!-- Google Maps -->
-<div
-        id="csMap"
-        class="cs-map"
-        data-cs-merkers='{ "2": {"id":2,"model":"VW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41039253373216,"ycoordinates":12.536652219669774},"3": {"id":3,"model":"BMW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41293023325759,"ycoordinates":12.538365008902971},"4": {"id":4,"model":"VW GTI","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":25.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.536652219669774},"5": {"id":5,"model":"Audi","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":40.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.53967775117165}}'
-></div>
 
-
-<!-- Booking Section -->
-<section class="cs-booking">
-    <img class="cs-car-image" src=""/>
-    <h3 class="cs-car-brand"></h3>
-    <p class="cs-color">Color</p>
-    <p class="cs-address">Potsdam</p>
-    <p class="cs-price-per-hour">Preis pro Stunde <span></span></p>
-
-    <a href="addbooking.html" th:href="@{/addbooking}" class="cs-book-now" id="csBookNow" data-car-id="carbooking">Jetzt buchen</a>
-</section>
-
-<script th:inline="javascript">
-    let carsAsString = [[${cars}]];
-</script>
-
-<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
-<script src="../static/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
-<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
-<script src="../static/js/jquery.sticky.js" th:src="@{/js/jquery.sticky.js}"></script>
 <script
         async
         defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc0TEu2s9XA77NASIjZxlh1xEtzUXY8w&callback=initMap"
 ></script>
 <script src="../static/js/cs-google-maps.js" th:src="@{/js/cs-google-maps.js}"></script>
+
 </body>
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8"/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Quicksand:400,600,700&display=swap"
-            crossorigin="anonymous"
-    />
-
-    <link rel="stylesheet" href="../static/fonts/icomoon/style.css" th:href="@{/fonts/icomoon/style.css}"/>
-
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css" th:href="@{/css/owl.carousel.min.css}"/>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
-
-    <!-- Style -->
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"/>
-
-    <title>Car sharing THB</title>
-</head>
 </html>

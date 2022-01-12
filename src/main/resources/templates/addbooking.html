@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href=" ../static/css/addbooking.css" th:href="@{/css/addbooking.css}"/>
+
+    <meta charset="UTF-8">
+    <title>booking</title>
+</head>
+
+<body>
+<div class="container">
+
+<h1> Buchung</h1>
+<h2 id="dasbuchen">
+    das Auto wurde gebucht
+</h2>
+   <h2>
+    <span id="m"></span>
+    <span id="d"> </span>
+    <span id="s"></span>
+   </h2>
+    <h2>
+    <span id="info"> Sie haben 15 Minuten um das Auto zu öfnnen</span>
+    </h2>
+    <button id="opencar">Jetzt öfnnen </button>
+    <h2>
+    <div id="timer"></div>
+    </h2>
+    <input id="closcar" hidden="true" type="button" value="Jetzt schließen">
+
+
+<button id="stornoButton">Jetzt stornieren </button>
+<section class="cs-booking">
+
+    <h3 class="cs-car-brand"></h3>
+    <p class="cs-color"></p>
+    <p class="cs-address"></p>
+
+
+
+</section>
+
+<script>
+
+
+
+        let s = 60;
+        let m = 14;
+
+        let time = setInterval(function () {
+            timer()
+        }, 1000);
+
+        function timer() {
+
+            s--;
+            if (s == -1) {
+                m--;
+                s = 59;
+                if (m == -1) {
+                    m = 0;
+                    s = 0;
+                    clearInterval(time);
+                    alert("die Zeit ist Um Sie haben es nicht geschafft das Auto zu öfnnen");
+                }
+            }
+            document.getElementById("m").innerHTML = m;
+            document.getElementById("s").innerHTML = s;
+            document.getElementById("d").innerHTML = ":";
+
+
+
+
+    }
+
+</script>
+
+<script>
+    document.getElementById("opencar").onclick = function () {
+        document.getElementById("opencar").style.display = "none";
+        clearInterval(time);
+        document.getElementById("m").style.display = "none";
+        document.getElementById("s").style.display = "none";
+        document.getElementById("d").style.display= "none";
+        document.getElementById("info").style.display= "none";
+        document.getElementById("stornoButton").style.display= "none";
+        document.getElementById("closcar").style.display= "block";
+        var timerVar = setInterval(countTimer, 1000);
+        var totalSeconds = 0;
+        function countTimer() {
+            ++totalSeconds;
+            var hour = Math.floor(totalSeconds /3600);
+            var minute = Math.floor((totalSeconds - hour*3600)/60);
+            var seconds = totalSeconds - (hour*3600 + minute*60);
+            if(hour < 10)
+                hour = "0"+hour;
+            if(minute < 10)
+                minute = "0"+minute;
+            if(seconds < 10)
+                seconds = "0"+seconds;
+            document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+
+            document.getElementById("closcar").addEventListener("click", function () { clearInterval(timerVar); });
+
+            }
+
+
+
+
+
+    }
+
+
+    //
+
+    document.getElementById("stornoButton").onclick = function () {
+        document.getElementById("opencar").style.display = "none";
+        clearInterval(time);
+        document.getElementById("stornoButton").style.display = "none";
+        document.getElementById("m").style.display = "none";
+        document.getElementById("s").style.display = "none";
+        document.getElementById("d").style.display= "none";
+        document.getElementById("info").style.display= "none";
+        document.getElementById("dasbuchen").innerHTML = "Die Buchung wurde Storniert"
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</div>
+
+</body>
+</html>
