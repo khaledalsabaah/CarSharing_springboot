@@ -30,6 +30,10 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
+    public List<Booking> getAllBookingsByCustomerId(long id) {
+        return (List<Booking>) bookingRepository.findByCustomerIs(customerRepository.findById(id).get());
+    }
+
     public Booking addBooking(long carID, long customerID) { //TODO: IDs anstatt Entities
         if(carRepository.existsById(carID) && customerRepository.existsById(customerID)){
             return bookingRepository.save(Booking.builder()
