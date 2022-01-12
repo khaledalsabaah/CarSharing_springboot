@@ -23,12 +23,15 @@ import java.util.List;
 @AllArgsConstructor
 public class BookingController {
     private final BookingService bookingService;
-
+    @GetMapping("addbooking")
+    public String showAddCar(Model model){
+        return "addbooking";
+    }
     @RequestMapping("addbooking")
     public String addBooking(@RequestParam("carid") long carid){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ExampleUserDetails user = (ExampleUserDetails)authentication.getPrincipal();
-        String userId = user.getUsername();
+        long userId = user.getId();
         String test = ("!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!\n"+carid +"\n"+ userId+"\n!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!");
                 //if(result.hasErrors())
         //bookingService.addBooking(carid,customerid);
