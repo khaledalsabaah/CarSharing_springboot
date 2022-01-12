@@ -17,7 +17,7 @@ function initMap() {
     //let markers = jQuery.parseJSON($('#csMap').attr('data-cs-merkers'));
     let exampleMarkers="{ \"2\": {\"id\":2,\"model\":\"VW\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":20.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.41039253373216,\"ycoordinates\":12.536652219669774},\"3\": {\"id\":3,\"model\":\"BMW\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":20.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.41293023325759,\"ycoordinates\":12.538365008902971},\"4\": {\"id\":4,\"model\":\"VW GTI\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":25.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.410909554526505,\"ycoordinates\":12.536652219669774},\"5\": {\"id\":5,\"model\":\"Audi\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":40.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.410909554526505,\"ycoordinates\":12.53967775117165}}";
     let tmpcars="";
-    if(typeof carsAsString === 'undefined'){
+    if(typeof carsAsString === 'undefined' || carsAsString === ""){
         tmpcars = exampleMarkers;
     }else{
         tmpcars=carsAsString;
@@ -112,7 +112,7 @@ function initMap() {
 
 
 }
-
+let carID;
 
 function displayBookingSection(props) {
     if ($('.cs-booking').css('display') != 'none') {
@@ -128,9 +128,13 @@ function displayBookingSection(props) {
     $('.cs-price-per-hour').find('span').html(props.price + ' Euro')
     $('#csBookNow').attr('data-car-id', props.carId)
     $('.cs-booking').show(500);
+    carID = props.carId;
     
 }
-
+document.getElementById("addbookingButton").onclick = function () {
+    let url = "/addbooking?carid="+ carID;
+    window.location=url;
+}
 function getAddressFromLaLng(coords) {
     let address = '';
     $.ajax({
