@@ -15,16 +15,12 @@ function initMap() {
 
     // Markers
     //let markers = jQuery.parseJSON($('#csMap').attr('data-cs-merkers'));
-    let exampleMarkers="{ \"2\": {\"id\":2,\"model\":\"VW\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":20.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.41039253373216,\"ycoordinates\":12.536652219669774},\"3\": {\"id\":3,\"model\":\"BMW\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":20.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.41293023325759,\"ycoordinates\":12.538365008902971},\"4\": {\"id\":4,\"model\":\"VW GTI\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":25.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.410909554526505,\"ycoordinates\":12.536652219669774},\"5\": {\"id\":5,\"model\":\"Audi\",\"carColor\":\"WHITE\",\"yearBuilt\":2022,\"fuelType\":\"HYBRID\",\"pricePerHour\":40.0,\"automatic\":true,\"inService\":true,\"available\":true,\"open\":false,\"bookingList\":\"\",\"xcoordinates\":52.410909554526505,\"ycoordinates\":12.53967775117165}}";
-    let tmpcars="";
-    if(typeof carsAsString === 'undefined'){
-        tmpcars = exampleMarkers;
-    }else{
-        tmpcars=carsAsString;
-    }
+    let tmpcars = '{ "2": {"id":2,"model":"VW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41039253373216,"ycoordinates":12.536652219669774},"3": {"id":3,"model":"BMW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41293023325759,"ycoordinates":12.538365008902971},"4": {"id":4,"model":"VW GTI","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":25.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.536652219669774},"5": {"id":5,"model":"Audi","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":40.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.53967775117165}}{ "2": {"id":2,"model":"VW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41039253373216,"ycoordinates":12.536652219669774},"3": {"id":3,"model":"BMW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41293023325759,"ycoordinates":12.538365008902971},"4": {"id":4,"model":"VW GTI","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":25.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.536652219669774},"5": {"id":5,"model":"Audi","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":40.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.53967775117165}}';
+    if (typeof carsAsString !== 'undefined' || carsAsString !== null)
+        tmpcars = carsAsString;
+
     let markers = jQuery.parseJSON(tmpcars);
 
-    
 
     $.each(markers, function (key) {
         // Add marker
@@ -39,18 +35,18 @@ function initMap() {
             const carId = car.id;
             const carColor = car.carColor;
             const carImg = car.img;
-            const props = {coords, cardAddress, content, price, carId, carColor, carImg };
+            const props = {coords, cardAddress, content, price, carId, carColor, carImg};
             addMarker(props);
         }
     });
 
 
     // Add Parking Areas
-    
+
     const flightPlanCoordinates = [
         {lat: 52.415713934215844, lng: 12.500018251595172},
         {lat: 52.421277203536036, lng: 12.523738744413565},
-        {lat:52.422662049111416, lng: 12.536977924175934},
+        {lat: 52.422662049111416, lng: 12.536977924175934},
         {lat: 52.421625998376705, lng: 12.556383051770478},
         {lat: 52.41609998322356, lng: 12.557515646847502},
         {lat: 52.41216227489358, lng: 12.551588399755072},
@@ -67,7 +63,6 @@ function initMap() {
     });
 
     flightPath.setMap(map);
-    
 
 
     // Add Marker Function
@@ -86,14 +81,14 @@ function initMap() {
 
         // Check for customicon
 
-        /** 
-        if (props.iconImage) {
+        /**
+         if (props.iconImage) {
             // Set icon image
             const image = "images/icons8-car-sharing-64.png";
             marker.setIcon(image);
             
         }
-        */
+         */
 
         // Check content
         /*
@@ -113,13 +108,14 @@ function initMap() {
 
 }
 
+let carID;
 
 function displayBookingSection(props) {
     if ($('.cs-booking').css('display') != 'none') {
         $('.cs-booking').hide(200);
     }
     $('.cs-car-brand').html(props.content);
-    $('.cs-color').html(props.carColor);    
+    $('.cs-color').html(props.carColor);
     const address = getAddressFromLaLng(props.coords);
     $('.cs-address').html(address);
     console.log(props)
@@ -128,7 +124,13 @@ function displayBookingSection(props) {
     $('.cs-price-per-hour').find('span').html(props.price + ' Euro')
     $('#csBookNow').attr('data-car-id', props.carId)
     $('.cs-booking').show(500);
-    
+    carID = props.carId;
+
+}
+
+document.getElementById("addbookingButton").onclick = function () {
+    let url = "/addbooking?carid=" + carID;
+    window.location = url;
 }
 
 function getAddressFromLaLng(coords) {
@@ -141,7 +143,7 @@ function getAddressFromLaLng(coords) {
         success: function (data) {
             console.log(data)
             const address_components = data.results[0].address_components;
-            address = address_components[1].long_name + ", " + address_components[0].long_name + ", "+ address_components[2].long_name ;
+            address = address_components[1].long_name + ", " + address_components[0].long_name + ", " + address_components[2].long_name;
         },
         error: function (request, error) {
             alert("Request: " + JSON.stringify(request));

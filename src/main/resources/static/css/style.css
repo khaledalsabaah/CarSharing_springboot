@@ -3,7 +3,6 @@ body {
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   background-color: #fff;
-  height: 200vh;
   position: relative;
 }
 
@@ -783,7 +782,6 @@ a:hover {
 
 /* Booking */
 .cs-booking {
-  transform: translateY(-5%);
   background: rebeccapurple;
   padding: 40px 30%;
   display: flex;

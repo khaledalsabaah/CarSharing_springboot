@@ -101,7 +101,9 @@
         data-cs-merkers='{ "2": {"id":2,"model":"VW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41039253373216,"ycoordinates":12.536652219669774},"3": {"id":3,"model":"BMW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41293023325759,"ycoordinates":12.538365008902971},"4": {"id":4,"model":"VW GTI","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":25.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.536652219669774},"5": {"id":5,"model":"Audi","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":40.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.53967775117165}}'
 ></div>
 
-
+<script th:inline="javascript">
+    let carsAsString = [[${cars}]];
+</script>
 <!-- Booking Section -->
 <section class="cs-booking">
     <img class="cs-car-image" src=""/>
@@ -109,13 +111,9 @@
     <p class="cs-color">Color</p>
     <p class="cs-address">Potsdam</p>
     <p class="cs-price-per-hour">Preis pro Stunde <span></span></p>
-
-    <a href="addbooking.html" th:href="@{/addbooking}" class="cs-book-now" id="csBookNow" data-car-id="carbooking">Jetzt buchen</a>
+    <a  class="cs-book-now" data-car-id="carbooking" id = "addbookingButton">Jetzt buchen</a>
 </section>
 
-<script th:inline="javascript">
-    let carsAsString = [[${cars}]];
-</script>
 
 <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <script src="../static/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>

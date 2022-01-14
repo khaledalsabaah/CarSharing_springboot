@@ -2,9 +2,9 @@ package de.thb.carsharing.entity.Type;
 
 public enum BookingStatus {
     NONEXISTENT,
-    ORDERED,
+    BOOKED,
     CANCELLED,
-    ACTIVE,
+    STARTED,
     FINISHED,
     PAID
 }

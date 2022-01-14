@@ -23,21 +23,22 @@ import java.util.List;
 @AllArgsConstructor
 public class BookingController {
     private final BookingService bookingService;
-    @GetMapping("addbooking")
-    public String showAddCar(Model model){
-        return "addbooking";
-    }
+
     @RequestMapping("addbooking")
-    public String addBooking(@RequestParam("carid") long carid){
+    public String addBooking(@RequestParam("carid") long carid, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ExampleUserDetails user = (ExampleUserDetails)authentication.getPrincipal();
         long userId = user.getId();
-        String test = ("!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!\n"+carid +"\n"+ userId+"\n!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!");
+        Booking booking = bookingService.addBooking(carid, userId);
+        if(booking != null){
+            model.addAttribute("booking", booking);
+        }
+        //String test = ("!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!\n"+carid +"\n"+ userId+"\n!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!");
                 //if(result.hasErrors())
         //bookingService.addBooking(carid,customerid);
 
         //return "redirect:/bookings";
-        return user.getUsername();
+        return "addbooking";
     }
     @GetMapping("bookings")
     public String showBookings(Model model){
@@ -72,17 +73,17 @@ public class BookingController {
     @RequestMapping("cancelbooking")
     public String cancelBooking(@RequestParam("id") Long id){
         if(bookingService.getBookingById(id).isPresent()){
-            bookingService.updateBookingStatus(id, BookingStatus.CANCELLED);
+            bookingService.cancelBooking(id);
         }
         else{
-            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
+            throw new ResponseStatusException((HttpStatus.NOT_FOUND),"Es ist ein Fehler bei der Stornierung aufgetreten, bitte melden Sie Sich beim Kundendienst!");
         }
-        return "redirect:/bookings";
+        return "redirect:/";
     }
     @RequestMapping("completebooking")
     public String completeBooking(@RequestParam("id") Long id){
         if(bookingService.getBookingById(id).isPresent()){
-            bookingService.updateBookingStatus(id, BookingStatus.FINISHED);
+            bookingService.finishBooking(id);
         }
         else{
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));

@@ -18,6 +18,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private Date bookTime;
     private Date startTime;
     private Date endTime;
     private BookingStatus bookingStatus;
