@@ -1,8 +1,6 @@
 package de.thb.carsharing.service;
 
 import de.thb.carsharing.entity.Booking;
-import de.thb.carsharing.entity.Car;
-import de.thb.carsharing.entity.Customer;
 import de.thb.carsharing.entity.Type.BookingStatus;
 import de.thb.carsharing.repository.BookingRepository;
 import de.thb.carsharing.repository.CarRepository;

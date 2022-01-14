@@ -26,7 +26,7 @@ public class CarController {
 
     @GetMapping("/")
     public String showHome(Model model){
-        List<Car> cars= carService.getAllCars();
+        List<Car> cars= carService.getAllAvailableCars();
         String carAsString ="";
         if(cars.size()>0)
             carAsString = getCarsAsString(cars);
