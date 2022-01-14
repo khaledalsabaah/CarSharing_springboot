@@ -73,7 +73,7 @@ public class BookingController {
     @RequestMapping("cancelbooking")
     public String cancelBooking(@RequestParam("id") Long id){
         if(bookingService.getBookingById(id).isPresent()){
-            bookingService.updateBookingStatus(id, BookingStatus.CANCELLED);
+            bookingService.cancelBooking(id);
         }
         else{
             throw new ResponseStatusException((HttpStatus.NOT_FOUND),"Es ist ein Fehler bei der Stornierung aufgetreten, bitte melden Sie Sich beim Kundendienst!");
@@ -83,7 +83,7 @@ public class BookingController {
     @RequestMapping("completebooking")
     public String completeBooking(@RequestParam("id") Long id){
         if(bookingService.getBookingById(id).isPresent()){
-            bookingService.updateBookingStatus(id, BookingStatus.FINISHED);
+            bookingService.finishBooking(id);
         }
         else{
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));

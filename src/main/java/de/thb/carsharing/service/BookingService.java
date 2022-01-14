@@ -34,27 +34,46 @@ public class BookingService {
         return (List<Booking>) bookingRepository.findByCustomerIs(customerRepository.findById(id).get());
     }
 
-    public Booking addBooking(long carID, long customerID) { //TODO: IDs anstatt Entities
+    public Booking addBooking(long carID, long customerID) {
         if(carRepository.existsById(carID) && customerRepository.existsById(customerID)){
+            carRepository.findById(carID).get().setAvailable(false);
             return bookingRepository.save(Booking.builder()
                     .car(carRepository.findById(carID).get())
                     .customer(customerRepository.findById(customerID).get())
-                    .startTime(new Date())
-                    .bookingStatus(BookingStatus.ORDERED)
+                    .bookTime(new Date())
+                    .bookingStatus(BookingStatus.BOOKED)
                     .build());
         } else {
             return null;
         }
     }
 
-    public void deleteCarById(long id) {
+    public void deleteBookingById(long id) {
         bookingRepository.deleteById(id);
     }
 
-    public void updateBookingStatus(long id, BookingStatus bookingStatus) {
-        if (bookingRepository.findById(id).isPresent()) {
+    public void startBooking(long id) {
+        if(bookingRepository.existsById(id)) {
             Booking booking = bookingRepository.findById(id).get();
-            booking.setBookingStatus(bookingStatus);
+            booking.setBookingStatus(BookingStatus.STARTED);
+            booking.setStartTime(new Date());
+            bookingRepository.save(booking);
+        }
+    }
+
+    public void cancelBooking(long id) {
+        if(bookingRepository.existsById(id)) {
+            Booking booking = bookingRepository.findById(id).get();
+            booking.setBookingStatus(BookingStatus.CANCELLED);
+            bookingRepository.save(booking);
+        }
+    }
+
+    public void finishBooking(long id) {
+        if(bookingRepository.existsById(id)) {
+            Booking booking = bookingRepository.findById(id).get();
+            booking.setBookingStatus(BookingStatus.FINISHED);
+            booking.setEndTime(new Date());
             bookingRepository.save(booking);
         }
     }
