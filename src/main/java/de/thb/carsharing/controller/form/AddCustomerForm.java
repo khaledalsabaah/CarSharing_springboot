@@ -48,6 +48,6 @@ public class AddCustomerForm {
     @NotNull
     @NotEmpty
     private String creditCardCSV;
-    //@NotNull
+    @NotNull
     private Date creditCardExpirationDate;
 }
