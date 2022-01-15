@@ -15,30 +15,29 @@ function initMap() {
 
     // Markers
     //let markers = jQuery.parseJSON($('#csMap').attr('data-cs-merkers'));
-    let tmpcars = "";
-    if (typeof carsAsString !== 'undefined' || carsAsString.length !== 0)
-        tmpcars = carsAsString;
+    let markers = "";
+    if (typeof carsAsString !== 'undefined' && carsAsString.length !== 0) {
 
-    let markers = jQuery.parseJSON(tmpcars);
+        markers = jQuery.parseJSON(carsAsString);
 
-
-    $.each(markers, function (key) {
-        // Add marker
-        const car = markers[key];
-        if (car.available) {
-            const lat = car.xcoordinates;
-            const lng = car.ycoordinates;
-            const coords = {lat, lng};
-            const cardAddress = 'Potsdam';
-            const content = car.model;
-            const price = car.pricePerHour;
-            const carId = car.id;
-            const carColor = car.carColor;
-            const carImg = car.img;
-            const props = {coords, cardAddress, content, price, carId, carColor, carImg};
-            addMarker(props);
-        }
-    });
+        $.each(markers, function (key) {
+            // Add marker
+            const car = markers[key];
+            if (car.available) {
+                const lat = car.xcoordinates;
+                const lng = car.ycoordinates;
+                const coords = {lat, lng};
+                const cardAddress = 'Potsdam';
+                const content = car.model;
+                const price = car.pricePerHour;
+                const carId = car.id;
+                const carColor = car.carColor;
+                const carImg = car.img;
+                const props = {coords, cardAddress, content, price, carId, carColor, carImg};
+                addMarker(props);
+            }
+        });
+    }
 
 
     // Add Parking Areas
@@ -133,7 +132,7 @@ function displayBookingSection(props) {
 //    window.location = url;
 //}
 
-function callAddBooking(){
+function callAddBooking() {
     let url = "/addbookingform?carid=" + carID;
     window.location = url;
 }
