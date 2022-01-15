@@ -24,7 +24,7 @@ import java.util.List;
 public class BookingController {
     private final BookingService bookingService;
 
-    @RequestMapping("addbooking")
+    @RequestMapping("addbookingform")
     public String addBooking(@RequestParam("carid") long carid, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ExampleUserDetails user = (ExampleUserDetails)authentication.getPrincipal();
@@ -33,12 +33,8 @@ public class BookingController {
         if(booking != null){
             model.addAttribute("booking", booking);
         }
-        //String test = ("!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!\n"+carid +"\n"+ userId+"\n!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!");
-                //if(result.hasErrors())
-        //bookingService.addBooking(carid,customerid);
-
-        //return "redirect:/bookings";
-        return "addbooking";
+        //if(result.hasErrors())
+        return "/addbooking";
     }
     @GetMapping("bookings")
     public String showBookings(Model model){

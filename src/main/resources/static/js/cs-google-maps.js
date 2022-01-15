@@ -15,8 +15,8 @@ function initMap() {
 
     // Markers
     //let markers = jQuery.parseJSON($('#csMap').attr('data-cs-merkers'));
-    let tmpcars = '{ "2": {"id":2,"model":"VW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41039253373216,"ycoordinates":12.536652219669774},"3": {"id":3,"model":"BMW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41293023325759,"ycoordinates":12.538365008902971},"4": {"id":4,"model":"VW GTI","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":25.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.536652219669774},"5": {"id":5,"model":"Audi","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":40.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.53967775117165}}{ "2": {"id":2,"model":"VW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41039253373216,"ycoordinates":12.536652219669774},"3": {"id":3,"model":"BMW","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":20.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.41293023325759,"ycoordinates":12.538365008902971},"4": {"id":4,"model":"VW GTI","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":25.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.536652219669774},"5": {"id":5,"model":"Audi","carColor":"WHITE","yearBuilt":2022,"fuelType":"HYBRID","pricePerHour":40.0,"automatic":true,"inService":true,"available":true,"open":false,"bookingList":"","xcoordinates":52.410909554526505,"ycoordinates":12.53967775117165}}';
-    if (typeof carsAsString !== 'undefined' || carsAsString !== null)
+    let tmpcars = "";
+    if (typeof carsAsString !== 'undefined' || carsAsString.length !== 0)
         tmpcars = carsAsString;
 
     let markers = jQuery.parseJSON(tmpcars);
@@ -128,8 +128,13 @@ function displayBookingSection(props) {
 
 }
 
-document.getElementById("addbookingButton").onclick = function () {
-    let url = "/addbooking?carid=" + carID;
+//document.getElementById("addbookingButton").onclick = function () {
+//    let url = "/addbooking?carid=" + carID;
+//    window.location = url;
+//}
+
+function callAddBooking(){
+    let url = "/addbookingform?carid=" + carID;
     window.location = url;
 }
 
