@@ -29,7 +29,7 @@ public class CarController {
         List<Car> cars= carService.getAllAvailableCars();
         String carAsString ="";
         if(cars.size()>0)
-            carAsString = ConvertToJson(cars);
+            carAsString = getCarsAsString(cars);
         model.addAttribute("cars", carAsString);
         return "index";
     }
@@ -110,7 +110,7 @@ public class CarController {
             return "redirect:/cars";
     }
 
-    public String ConvertToJson(List<Car> cars) {
+    public String getCarsAsString(List<Car> cars) {
         String carAsString;
         try {
             ObjectMapper objectMapper = new ObjectMapper();
