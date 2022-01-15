@@ -26,7 +26,7 @@
     <h1>
         <div id="timer"></div>
     </h1>
-    <input id="closcar" hidden="true" type="button" value="Jetzt schließen">
+    <input id="closcar"  type="button" value="Jetzt schließen">
 
 
     <button id="stornoButton" th:action="@{/cancelbooking(id=${booking.id})}" >Jetzt stornieren</button>
@@ -48,6 +48,7 @@
 
         let s = 60;
         let m = 14;
+
 
         let time = setInterval(function () {
             timer()
@@ -81,6 +82,8 @@
             document.getElementById("info").style.display = "none";
             document.getElementById("stornoButton").style.display = "none";
             document.getElementById("closcar").style.display = "block";
+
+        }
             var timerVar = setInterval(countTimer, 1000);
             var totalSeconds = 0;
 
@@ -101,11 +104,14 @@
                     clearInterval(timerVar);
                 });
             }
-        }
+
         document.getElementById("stornoButton").onclick = function () {
             document.getElementById("opencar").style.display = "none";
             clearInterval(time);
             document.getElementById("stornoButton").style.display = "none";
+            document.getElementById("closcar").style.display = "none";
+            clearInterval(timerVar);
+            document.getElementById("timer").style.display = "none";
             document.getElementById("m").style.display = "none";
             document.getElementById("s").style.display = "none";
             document.getElementById("d").style.display = "none";
