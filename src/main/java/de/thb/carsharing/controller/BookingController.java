@@ -33,12 +33,7 @@ public class BookingController {
         if(booking != null){
             model.addAttribute("booking", booking);
         }
-        //String test = ("!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!\n"+carid +"\n"+ userId+"\n!!!!!!!!!!!!!!!!!BookingController!!!!!!!!!!!!!!!!!");
-                //if(result.hasErrors())
-        //bookingService.addBooking(carid,customerid);
-
-        //return "redirect:/bookings";
-        return "addbooking";
+        return "bookingdetails";
     }
     @GetMapping("bookings")
     public String showBookings(Model model){
@@ -50,12 +45,14 @@ public class BookingController {
     public String showBookingDetails(@PathVariable("id") long id, Model model){
 
         Booking booking;
-        if(bookingService.getBookingById(id).isPresent())
+        if(bookingService.getBookingById(id).isPresent()){
             booking= bookingService.getBookingById(id).get();
-        else
+            model.addAttribute("booking", booking);
+        }
+        else {
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
-        model.addAttribute("booking", booking);
-        return "details";
+        }
+        return "bookingdetails";
     }
 /*
     @GetMapping("bookings/{id}")

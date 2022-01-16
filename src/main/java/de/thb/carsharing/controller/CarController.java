@@ -111,14 +111,17 @@ public class CarController {
     }
 
     public String getCarsAsString(List<Car> cars) {
-        String carAsString;
+        String carAsString="";
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             carAsString = String.format("{ \"%d\": ", cars.get(0).getId());
             for (int i = 0; i< cars.size(); i++){
+                 cars.get(i).setBookingList(null);
                 carAsString += objectMapper.writeValueAsString(cars.get(i));
-                if(i+1 != cars.size())
+                if(i+1 != cars.size()) {
+                    cars.get(i+1).setBookingList(null);
                     carAsString += String.format(",\"%d\": ", cars.get(i + 1).getId());
+                }
             }
             carAsString += "}";
         } catch (JsonProcessingException e) {

@@ -116,6 +116,7 @@ function displayBookingSection(props) {
     $('.cs-car-brand').html(props.content);
     $('.cs-color').html(props.carColor);
     const address = getAddressFromLaLng(props.coords);
+    sessionStorage.setItem("carAddress", address);
     $('.cs-address').html(address);
     console.log(props)
     $('.cs-car-image').attr("src", props.carImg);
@@ -133,7 +134,7 @@ function displayBookingSection(props) {
 //}
 
 function callAddBooking() {
-    let url = "/addbookingform?carid=" + carID;
+    let url = "/addbooking?carid=" + carID;
     window.location = url;
 }
 
