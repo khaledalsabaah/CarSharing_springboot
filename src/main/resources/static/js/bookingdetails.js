@@ -5,7 +5,7 @@ const carAdress = getAddressFromLaLng(coords);
 document.getElementById('address').innerHTML=carAdress;
 
 let date1 = new Date();
-date1.setHours(bookingBookTimeHHJs, bookingBookTimeMMJs);
+date1.setHours(bookingBookTimeHHJs, bookingBookTimeMMJs,bookingBookTimeSSJs);
 let endTimer = add_minutes(date1, 14);
 
 let currentDate = new Date();
