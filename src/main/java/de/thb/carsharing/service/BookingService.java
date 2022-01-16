@@ -1,6 +1,7 @@
 package de.thb.carsharing.service;
 
 import de.thb.carsharing.entity.Booking;
+import de.thb.carsharing.entity.Car;
 import de.thb.carsharing.entity.Type.BookingStatus;
 import de.thb.carsharing.repository.BookingRepository;
 import de.thb.carsharing.repository.CarRepository;
@@ -34,6 +35,7 @@ public class BookingService {
 
     public Booking addBooking(long carID, long customerID) {
         if (carRepository.existsById(carID) && customerRepository.existsById(customerID)) {
+            //TODO Überprüfung ob Customer schon eine Buchung gebucht oder gestartet hat
             carRepository.findById(carID).get().setAvailable(false);
             return bookingRepository.save(Booking.builder()
                     .car(carRepository.findById(carID).get())
@@ -81,8 +83,9 @@ public class BookingService {
             Booking booking = bookingRepository.findById(id).get();
             booking.setBookingStatus(BookingStatus.FINISHED);
             booking.setEndTime(new Date());
-            bookingRepository.save(booking);
             carRepository.findById(booking.getCar().getId()).get().setAvailable(true);
+            carRepository.findById(booking.getCar().getId()).get().setOpen(false);
+            bookingRepository.save(booking);
             return true;
         } else
             return false;
