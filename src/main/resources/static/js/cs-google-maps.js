@@ -116,7 +116,7 @@ function displayBookingSection(props) {
     $('.cs-car-brand').html(props.content);
     $('.cs-color').html(props.carColor);
     const address = getAddressFromLaLng(props.coords);
-    sessionStorage.setItem("carAddress", address);
+    //sessionStorage.setItem("carAddress", address);
     $('.cs-address').html(address);
     console.log(props)
     $('.cs-car-image').attr("src", props.carImg);

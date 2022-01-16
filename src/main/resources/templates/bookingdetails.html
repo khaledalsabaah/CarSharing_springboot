@@ -6,6 +6,8 @@
 
     <meta charset="UTF-8">
     <title>booking</title>
+
+
 </head>
 
 <body>
@@ -15,11 +17,11 @@
     <h2 id="dasbuchen">
         Sie haben das folgende Auto gebucht:
     </h2>
-    <section class="cs-booking">
+    <section class="cs-booking" id ="cs-booking">
 
-        <h3 class="cs-car-brand" th:text="${booking.car.model}"></h3>
-        <p class="cs-color" th:text="${booking.car.carColor}"></p>
-        <p class="cs-address" id="address">Potsdam</p>
+        <h3 class="cs-car-brand" th:text="${booking.car.model}">VW</h3>
+        <h2 class="cs-color" th:text="${booking.car.carColor}">RED</h2>
+        <p class="cs-address" id="address">Brandenburg</p>
 
     </section>
     <h1>
@@ -44,16 +46,17 @@
     <a id="BookTimeHH" hidden th:value="${#dates.hour(booking.bookTime)}"> </a>
     <a id="BookTimeMM" hidden th:value="${#dates.minute(booking.bookTime)}"> </a>
 
-
-    <script th:inline="javascript">
-        let bookingidJs = [[${booking.id}]];
-        let bookingJs = [[${booking}]];
-        let bookingBookTimeHHJs = [[${booking.bookTime.hours}]];
-        let bookingBookTimeMMJs = [[${booking.bookTime.minutes}]];
-        let bookingBookTimeSSJs = [[${booking.bookTime.seconds}]];
-    </script>
-    <script src="../static/js/bookingdetails.js" th:src="@{/js/bookingdetails.js}"></script>
-
 </div>
+<script th:inline="javascript">
+    let bookingidJs = [[${booking.id}]];
+    let bookingXcJs = [[${booking.car.XCoordinates}]];
+    let bookingYcJs = [[${booking.car.YCoordinates}]];
+    let bookingBookTimeHHJs = [[${booking.bookTime.hours}]];
+    let bookingBookTimeMMJs = [[${booking.bookTime.minutes}]];
+    let bookingBookTimeSSJs = [[${booking.bookTime.seconds}]];
+</script>
+
+<script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" src="../static/js/bookingdetails.js" th:src="@{/js/bookingdetails.js}"></script>
 </body>
 </html>
