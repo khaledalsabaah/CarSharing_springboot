@@ -76,13 +76,16 @@ public class BookingService {
             return false;
     }
 
-    public void finishBooking(long id) {
+    public boolean finishBooking(long id) {
         if (bookingRepository.existsById(id)) {
             Booking booking = bookingRepository.findById(id).get();
             booking.setBookingStatus(BookingStatus.FINISHED);
             booking.setEndTime(new Date());
             bookingRepository.save(booking);
-        }
+            carRepository.findById(booking.getCar().getId()).get().setAvailable(true);
+            return true;
+        } else
+            return false;
     }
 
     public BookingStatus getBookingStatus(long id) {
