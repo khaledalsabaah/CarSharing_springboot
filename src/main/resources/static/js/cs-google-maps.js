@@ -1,6 +1,40 @@
 // Hide Booking Section
 $('.cs-booking').hide();
 
+//checkBookTime();
+
+function checkBookTime(){
+    const getCookieValue = (name) => (
+        document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
+    )
+    let startTime = getCookieValue("time");
+    let IsCarOpen = getCookieValue("IsCarOpen");
+    let bookigId = getCookieValue("BookingId");
+    if(startTime!="")
+        console.log(startTime);
+    if(IsCarOpen!="")
+        console.log(IsCarOpen);
+    if(bookigId!="")
+        console.log(bookigId);
+
+    if(startTime != "" && bookigId != "" && IsCarOpen!=""){
+        if(IsCarOpen=="false" && getDiff(startTime)>1){
+            cancelBooking(bookigId);
+            document.cookie="IsCarOpen=;BookingId=;";
+        }
+
+    }
+    //if minuten difference less than 0 and car is not opened than call cancel booking
+
+}
+function getDiff(startTime) {
+
+    const javaScriptRelease = Date.parse(startTime);
+    let currentDate = new Date();
+    let diffMs = ( currentDate - javaScriptRelease);
+    let diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+    return diffMins;
+}
 
 function initMap() {
     // Map options
@@ -134,8 +168,23 @@ function displayBookingSection(props) {
 //}
 
 function callAddBooking() {
+    //let d = new Date();
+    //document.cookie="time="+d;
     let url = "/addbooking?carid=" + carID;
     window.location = url;
+}
+function cancelBooking(bookingId) {
+    $.ajax({
+        url: "/cancelbooking?id=" + bookingId,
+        type: 'POST',
+        async: false,
+        success: function (data) {
+            console.log(data)
+           },
+        error: function (request, error) {
+            alert("Request: " + JSON.stringify(request));
+        }
+    });
 }
 
 function getAddressFromLaLng(coords) {

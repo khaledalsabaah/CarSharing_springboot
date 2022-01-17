@@ -29,11 +29,12 @@
                 <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
                     <li><a href="index.html" class="nav-link active">Home</a></li>
                     <li><a href="about.html">About</a></li>
-
-                    <li><a href="mybooking.html">Meine Buchung</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li sec:authorize="hasAuthority('ROLE_ADMIN')">
                         <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
+                    </li>
+                    <li sec:authorize="hasAuthority('ROLE_CUSTOMER')">
+                        <a href="mybookings.html" th:href="@{/mybookings}"><span class="mr-2"></span>Meine Buchungen</a>
                     </li>
 
                     <li class="d-lg-none" sec:authorize="!isAuthenticated()">

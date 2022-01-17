@@ -3,6 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <link rel="stylesheet" href=" ../static/css/bookingdetails.css" th:href="@{/css/bookingdetails.css}"/>
+    <!--    <link rel="stylesheet" href=" ../static/css/notifications.css" th:href="@{/css/notifications.css}">-->
 
     <meta charset="UTF-8">
     <title>booking</title>
@@ -14,37 +15,48 @@
 <div class="container">
 
     <h1> Buchung</h1>
-    <h2 id="dasbuchen">
-        Sie haben das folgende Auto gebucht:
-    </h2>
-    <section class="cs-booking" id ="cs-booking">
+    <h2 id="dasbuchen" th:if="${booking.bookingStatus != T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Sie
+        haben das folgende Auto gebucht:</h2>
+    <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Die Buchung wurde
+        Storniert</h2>
 
+    <section class="cs-booking" id="cs-booking">
         <h3 class="cs-car-brand" th:text="${booking.car.model}">VW</h3>
         <h2 class="cs-color" th:text="${booking.car.carColor}">RED</h2>
         <p class="cs-address" id="address">Brandenburg</p>
-
     </section>
-    <h1>
+    <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
+        Sie habe die Buchung erfolgreich abgeschlossen, Wie freuen uns auf Ihren nächsten Besuch!
+    </h2>
+    <h2 hidden id="finishText">
+        Sie habe die Buchung erfolgreich abgeschlossen, Wie freuen uns auf Ihren nächsten Besuch!
+    </h2>
+
+    <h1 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).BOOKED}">
         <span id="m"></span>
         <span id="d"> </span>
         <span id="s"></span>
     </h1>
-
-    <h2>
-        <span id="info"> Sie haben 15 Minuten um das Auto zu öffnen</span>
-    </h2>
-
-    <button id="opencar">Jetzt öfnnen</button>
-    <h1>
+    <h1 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).STARTED}">
         <div id="timer"></div>
     </h1>
-    <input id="closcar" type="button" value="Jetzt schließen">
+
+    <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).BOOKED}">
+        <span id="info"> Sie haben 15 Minuten um das Auto zu öffnen</span>
+    </h2>
+    <form th:action="@{/startbooking (id=${booking.id})}" th:object="${booking}" method="post">
+        <button type="submit" th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).BOOKED}"
+                id="opencar">Jetzt öfnnen
+        </button>
+    </form>
+    <input th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).STARTED}"
+           th:onclick="'finishBooking()'" id="closecar" type="button" value="Jetzt schließen">
 
     <!--    <form th:action="@{/addbooking (carid=${car.id})}" th:object="${car}" method="post">-->
-    <button id="stornoButton">Jetzt stornieren</button>
+    <button th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).BOOKED}"
+            id="stornoButton">Jetzt stornieren
+    </button>
     <!--    </form>-->
-    <a id="BookTimeHH" hidden th:value="${#dates.hour(booking.bookTime)}"> </a>
-    <a id="BookTimeMM" hidden th:value="${#dates.minute(booking.bookTime)}"> </a>
 
 </div>
 <script th:inline="javascript">
@@ -54,9 +66,11 @@
     let bookingBookTimeHHJs = [[${booking.bookTime.hours}]];
     let bookingBookTimeMMJs = [[${booking.bookTime.minutes}]];
     let bookingBookTimeSSJs = [[${booking.bookTime.seconds}]];
+    let bookingStartTimeJs = [[${booking.StartTime}]];
 </script>
 
 <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<!--<script src="../static/js/notifications.js" th:src="@{/js/notifications.js}"></script>-->
 <script type="text/javascript" src="../static/js/bookingdetails.js" th:src="@{/js/bookingdetails.js}"></script>
 </body>
 </html>

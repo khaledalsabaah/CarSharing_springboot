@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Meine Buchung</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--=============================================================================================-->
+    <link rel="stylesheet" href=" ../static/css/mybooking.css" th:href="@{/css/mybooking.css}"/>
+
+    <!---->
+
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
+                    <tr class="table100-head">
+                        <th class="column1">Datum</th>
+                        <th class="column2">Startzeit</th>
+                        <th class="column3">Endzeit</th>
+                        <th class="column4">Buchungsstatus</th>
+                        <th class="column5">Auto Model</th>
+                        <th class="column6">Kosten</th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="booking: ${bookings}">
+
+<!--                        <tr onclick="window.location='http://localhost:9090/CarSharing/templates/index.html';">-->
+                        <tr th:attr="onclick=|window.location='/bookings/${booking.id}'|">
+                            <td class="column1"  th:text="${booking.bookTime}">2017-09-29 </td>
+                            <td class="column2"  th:text="${booking.startTime}">11:13</td>
+                            <td class="column3"  th:text="${booking.endTime}">12:30</td>
+                            <td class="column4"  th:text="${booking.bookingStatus}">Aktiv</td>
+                            <td class="column5"  th:text="${booking.car.model}">Audi</td>
+                            <td class="column6"  th:text="${booking.car.pricePerHour}">30 $</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--===============================================================================================-->
+
+</body>
+</html>
