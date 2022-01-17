@@ -22,6 +22,7 @@ public class Booking {
     private Date startTime;
     private Date endTime;
     private BookingStatus bookingStatus;
+    private double cost;
     @ManyToOne
     private Car car;
     @ManyToOne
