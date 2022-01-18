@@ -55,7 +55,7 @@ public class BookingService {
                         .build());
                 threadPoolTaskScheduler.schedule(
                         new CancelBookingAfterFifteenMinutes(booking.getId()),
-                        new Date(booking.getBookTime().getTime() + TimeUnit.MINUTES.toMillis(15)));
+                        new Date(booking.getBookTime().getTime() + TimeUnit.MINUTES.toMillis(1)));
                 return booking;
             } else {
                 return null; //TODO Exceptions
@@ -78,6 +78,7 @@ public class BookingService {
             Booking booking = bookingRepository.findById(id).get();
             booking.setBookingStatus(BookingStatus.STARTED);
             booking.setStartTime(new Date());
+            booking.getCar().setOpen(true);
             bookingRepository.save(booking);
             return true;
         } else
@@ -88,28 +89,26 @@ public class BookingService {
         if (bookingRepository.existsById(id)) {
             Booking booking = bookingRepository.findById(id).get();
             booking.setBookingStatus(BookingStatus.CANCELLED);
-            carRepository.findById(booking.getCar().getId()).get().setAvailable(true);
+            booking.getCar().setAvailable(true);
             bookingRepository.save(booking);
             return true;
         } else
             return false;
     }
 
-    class CancelBookingAfterFifteenMinutes implements  Runnable {
+    class CancelBookingAfterFifteenMinutes implements Runnable {
 
         private long id;
 
-        public CancelBookingAfterFifteenMinutes(long id){
+        public CancelBookingAfterFifteenMinutes(long id) {
             this.id = id;
         }
 
         @Override
         public void run() {
-            if (bookingRepository.existsById(id)){
-                Booking booking = bookingRepository.findById(id).get();
-                if (booking.getBookingStatus().equals(BookingStatus.BOOKED)) {
-                    booking.setBookingStatus(BookingStatus.CANCELLED);
-                    bookingRepository.save(booking);
+            if (bookingRepository.existsById(id)) {
+                if (bookingRepository.findById(id).get().getBookingStatus().equals(BookingStatus.BOOKED)) {
+                    cancelBooking(id);
                 }
             }
         }
@@ -125,8 +124,8 @@ public class BookingService {
             long durationInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
             booking.setCost((booking.getCar().getPricePerHour() / 60) * durationInMinutes);
 
-            carRepository.findById(booking.getCar().getId()).get().setAvailable(true);
-            carRepository.findById(booking.getCar().getId()).get().setOpen(false);
+            booking.getCar().setAvailable(true);
+            booking.getCar().setOpen(false);
             bookingRepository.save(booking);
             return true;
         } else
@@ -134,7 +133,7 @@ public class BookingService {
     }
 
     public BookingStatus getBookingStatus(long id) {
-        if (bookingRepository.findById(id).isPresent())
+        if (bookingRepository.existsById(id))
             return bookingRepository.findById(id).get().getBookingStatus();
         else
             return BookingStatus.NONEXISTENT;

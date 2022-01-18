@@ -23,7 +23,7 @@ public class Booking {
     private Date endTime;
     private BookingStatus bookingStatus;
     private double cost;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Car car;
     @ManyToOne
     private Customer customer;
