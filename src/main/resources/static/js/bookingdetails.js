@@ -31,8 +31,8 @@ function timer() {
             }
         }
 
-            if (m < 10) m = "0" + m;
-            if (s < 10) s = "0" + s;
+            if (m < 10 && m.toString().length <2) m = "0" + m;
+            if (s < 10 && s.toString().length <2) s = "0" + s;
             document.getElementById("m").innerHTML = m;
             document.getElementById("s").innerHTML = s;
             document.getElementById("d").innerHTML = ":";

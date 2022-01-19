@@ -5,8 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Data
@@ -16,6 +19,7 @@ import java.util.Date;
 public class AddCustomerForm {
     @NotNull
     @NotEmpty
+    //@NotBlank(message = "dieses Feld darf nicht leer sein")
     private String firstName;
     @NotNull
     @NotEmpty
@@ -29,6 +33,7 @@ public class AddCustomerForm {
     private String phoneNumber;
     @NotNull
     @NotEmpty
+    @Size(min=8)
     private String password;
     @NotNull
     private Date birthdate;
@@ -42,6 +47,7 @@ public class AddCustomerForm {
     @NotEmpty
     private String city;
     //Credit card
+    //@Id
     @NotNull
     @NotEmpty
     private String creditCardNumber;

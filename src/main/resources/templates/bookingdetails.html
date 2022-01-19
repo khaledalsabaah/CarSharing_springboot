@@ -24,7 +24,9 @@
         <h3 class="cs-car-brand" th:text="${booking.car.model}">VW</h3>
         <h2 class="cs-color" th:text="${booking.car.carColor}">RED</h2>
         <p class="cs-address" id="address">Brandenburg</p>
+        <h2 class="cs-color" th:text="${booking.car.pricePerHour}">RED</h2>
     </section>
+
     <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
         Sie habe die Buchung erfolgreich abgeschlossen, Wie freuen uns auf Ihren nächsten Besuch!
     </h2>

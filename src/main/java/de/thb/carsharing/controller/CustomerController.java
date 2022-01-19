@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
@@ -50,9 +51,13 @@ public class CustomerController{
     public String showSignup(Model model){
         return "signup";
     }
+
     @PostMapping("addcustomerform")
-    public String addCustomer(@Valid AddCustomerForm form, BindingResult result){
-        //if(result.hasErrors())
+    public String addCustomer(@Valid @ModelAttribute("form") AddCustomerForm form, BindingResult result, Model model){
+        if(result.hasErrors()){
+            model.addAttribute("Message", "bitte die Felder mit gültigen Daten ausfüllen!");
+            return "signup";
+        }
         customerService.addCustomer(form.getEmail(),form.getPassword(),form.getFirstName(), form.getLastName() , form.getDriversLicenceID(), form.getPhoneNumber(),
                 form.getBirthdate(), form.getAddress(), form.getZipcode(), form.getCity(),
                 form.getCreditCardNumber(),form.getCreditCardCSV(),form.getCreditCardExpirationDate());

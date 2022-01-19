@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:form="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8">
     <title>Hinzufügen eines Autos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/signup.css" th:href="@{/css/signup.css}"/>
   </head>
   <body>
+  <div th:if="${Message != null}" class="col-md-12" align="center">
+    <br />
+    <div class="alert alert-danger" role="alert">
+      <p th:text="${Message}"/>
+    </div>
+  </div>
     <div class="container">
-      <form th:action="@{addcustomerform}" method ="post">
+      <form action="#"  th:action="@{addcustomerform}" th:object="${form}" method ="post">
         <div>
           <h2>JETZT REGISTRIEREN UND EXKLUSIVEN VORTEIL SICHERN</h2>
           <p>
@@ -21,11 +29,13 @@
         <div class="rowoben">
           <h4>Konto</h4>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Vorname" name = "firstName" />
+            <form:input type="text" placeholder="Vorname" name = "firstName" />
+            <form:error >dieses Feld darf nicht leer sein</form:error>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Nachname" name = "lastName" />
+            <input type="text" placeholder="Nachname"  name = "lastName" />
+<!--            <i th:if="${#fields.hasErrors('lastName')}" >dieses Feld darf nicht leer sein</i>-->
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
@@ -33,7 +43,8 @@
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="password" placeholder="Passwort" name = "password"  />
+            <input type="password" id= "password" placeholder="Passwort" name = "password"  />
+<!--            <i th:if="${#fields.hasErrors('password')}" >dieses Feld darf nicht leer sein</i>-->
             <div class="input-icon"><i class="fa fa-key"></i></div>
           </div>
           <div class="input-group input-group-icon">
@@ -44,7 +55,7 @@
             <input type="text" placeholder="Führerscheinnummer" name = "driversLicenceID"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
-         
+
           <div class="input-group input-group-icon">
             <input type="text" placeholder="Straße & Hausnummer" name = "address"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
@@ -62,23 +73,23 @@
           <div class="col-half">
             <h4>Geburtsdatum</h4>
             <div class="input-group">
-              
+
               <div class="col-third">
-               
+
                 <input type="date" value="" name = "birthdate"  /></label>
               </div>
             </div>
           </div>
-         
+
         </div>
         <div class="row">
           <h4>Zhalungsmittel</h4>
           <div class="input-group">
-           
+
             <label for="payment-method-card"
               ><span><i class="fa fa-cc-visa"></i>Credit Card</span></label
             >
-            
+
           </div>
           <div class="input-group input-group-icon">
             <input type="text" placeholder="Card Number" name = "creditCardNumber"  />
@@ -124,6 +135,29 @@
       </form>
     </div>
 
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../static/js/pwstrength-bootstrap.min.js" th:src="@{/js/pwstrength-bootstrap.min.js}"></script>
+<!--    <script src="pwstrength.js"></script>-->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        options = {
+          common: {minChar:8},
+          ui: {
+            showVerdictsInsideProgressBar:true,
+            showErrors:true,
+            errorMessages:{
+              wordLength: "Dein Passwort ist zu kurz",
+              wordNotEmail: 'Verwenden Sie Ihre E-Mail-Adresse nicht als Passwort',
+              wordSequences: 'Ihr Passwort enthält Sequenzen',
+              wordLowercase: '<spring:message code="error.wordLowercase"/>',
+              wordUppercase: '<spring:message code="error.wordUppercase"/>',
+              wordOneNumber: '<spring:message code="error.wordOneNumber"/>',
+              wordOneSpecialChar: 'Verwenden Sie verschiedene Zeichenklassen'
+            }
+          }
+        };
+        $('#password').pwstrength(options);
+      });
+    </script>
   </body>
 </html>

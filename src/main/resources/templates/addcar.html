@@ -3,9 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>Hinzufügen eines Autos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/singup.css" th:href="@{/css/signup.css}"/>
   </head>
   <body>
+  <div th:if="${Message != null}" class="col-md-12" align="center">
+    <br />
+    <div class="alert alert-danger" role="alert">
+      <p style="white-space: pre ;" th:text="${Message}"/>
+    </div>
+  </div>
     <div class="container">
       <div class="formcar">
         <div class="rowoben">
