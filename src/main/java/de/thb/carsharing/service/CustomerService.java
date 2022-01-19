@@ -32,6 +32,9 @@ public class CustomerService {
     public Customer addCustomer(String email, String password, String firstName, String lastName, String driversLicenceID,
                                 String phoneNumber, Date birthdate, String address, String zipcode, String city,
                                 String creditCardNumber, String creditCardCSV, Date creditCardExpirationDate) {
+        if (!password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$")) {
+            return null;
+        }
         Customer newCustomer = Customer.builder()
                 .firstName(firstName)
                 .lastName(lastName)
