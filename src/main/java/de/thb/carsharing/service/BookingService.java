@@ -55,7 +55,7 @@ public class BookingService {
                         .build());
                 threadPoolTaskScheduler.schedule(
                         new CancelBookingAfterFifteenMinutes(booking.getId()),
-                        new Date(booking.getBookTime().getTime() + TimeUnit.MINUTES.toMillis(1)));
+                        new Date(booking.getBookTime().getTime() + TimeUnit.MINUTES.toMillis(15)));
                 return booking;
             } else {
                 return null; //TODO Exceptions
