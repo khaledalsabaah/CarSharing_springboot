@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -58,10 +56,10 @@ public class BookingService {
                         new Date(booking.getBookTime().getTime() + TimeUnit.MINUTES.toMillis(15)));
                 return booking;
             } else {
-                return null; //TODO Exceptions
+                throw new IllegalStateException("Sie haben bereits eine aktive Buchung");
             }
         } else {
-            return null;
+            throw new IllegalArgumentException("Das Auto oder der Kunde existiert nicht");
         }
     }
 
@@ -138,6 +136,4 @@ public class BookingService {
         else
             return BookingStatus.NONEXISTENT;
     }
-
-    //TODO: calculateCarDistance()
 }

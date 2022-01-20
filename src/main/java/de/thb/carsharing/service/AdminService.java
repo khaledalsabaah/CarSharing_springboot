@@ -19,8 +19,4 @@ public class AdminService {
         return adminRepository.findById(id);
     }
 
-
-
-    //TODO - login
-
 }

@@ -33,7 +33,7 @@ public class CustomerService {
                                 String phoneNumber, Date birthdate, String address, String zipcode, String city,
                                 String creditCardNumber, String creditCardCSV, Date creditCardExpirationDate) {
         if (!password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$")) {
-            return null;
+            throw new IllegalArgumentException("Das Passwort erfüllt die Vorgaben nicht");
         }
         Customer newCustomer = Customer.builder()
                 .firstName(firstName)
@@ -58,7 +58,7 @@ public class CustomerService {
     }
 
     public boolean modifyAccountDetails(long id, String firstName, String lastName, String driversLicenceID) {
-        if (customerRepository.findById(id).isPresent()) { //TODO existsById(id) als alternative
+        if (customerRepository.existsById(id)) {
             Customer customer = customerRepository.findById(id).get();
             customer.setFirstName(firstName);
             customer.setLastName(lastName);
