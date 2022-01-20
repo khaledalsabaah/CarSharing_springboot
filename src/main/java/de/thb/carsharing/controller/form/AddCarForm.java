@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.awt.*;
 
 @Data
@@ -19,25 +18,28 @@ import java.awt.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddCarForm {
-    @NotNull
+    @NotNull(message = "Preis per hour darf nicht leer sein!")
     private double preisPerHour;
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "Model darf nicht leer sein!")
     private String model;
-    @NotNull
+    @NotNull(message = "Car Color darf nicht leer sein!")
     @Enumerated(EnumType.STRING)
     @Column(name="car_color")
     private CarColor carColor;
-    @NotNull
+    @NotNull(message = "Year Built darf nicht leer sein!")
+    @Min(value=0, message="bitte ein gültige Nummer eingeben")
     private short yearBuilt;
-    @NotNull
+    @NotNull(message = "Fuel Type darf nicht leer sein!")
     @Enumerated(EnumType.STRING)
     @Column(name="fuel_type")
     private FuelType fuelType;
     @NotNull
+    @DecimalMin(value = "0.0", message="bitte ein gültige Nummer eingeben")
     private double xCoordinates;
     @NotNull
+    @DecimalMin(value = "0.0", message="bitte ein gültige Nummer eingeben")
     private double yCoordinates;
-    @NotNull
+    @NotNull(message = "Is automatic darf nicht leer sein!")
     private boolean automatic;
 }

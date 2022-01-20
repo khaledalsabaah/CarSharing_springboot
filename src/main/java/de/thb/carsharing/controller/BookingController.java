@@ -37,6 +37,10 @@ public class BookingController {
             model.addAttribute("booking", booking);
             Cookie bookingIdCookie = new Cookie("BookingId", String.valueOf(booking.getId()));
             response.addCookie(bookingIdCookie);
+        }else
+        {
+                model.addAttribute("Message", "Es ist eine Fehler bei der Buchung aufgetreten, bitte versuchen Sie später!");
+                return "redirect:/";
         }
         return "bookingdetails";
     }
