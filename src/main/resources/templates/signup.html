@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns:form="http://www.w3.org/1999/xhtml">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta charset="UTF-8">
     <title>Hinzufügen eines Autos</title>
@@ -29,8 +29,7 @@
         <div class="rowoben">
           <h4>Konto</h4>
           <div class="input-group input-group-icon">
-            <form:input type="text" placeholder="Vorname" name = "firstName" />
-            <form:error >dieses Feld darf nicht leer sein</form:error>
+            <input type="text" placeholder="Vorname" name = "firstName" />
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">

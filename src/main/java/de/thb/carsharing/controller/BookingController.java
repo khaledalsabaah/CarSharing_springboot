@@ -15,8 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
@@ -28,19 +31,22 @@ public class BookingController {
     private final BookingService bookingService;
 
     @RequestMapping("addbooking")
-    public String addBooking(@RequestParam("carid") long carid, Model model, HttpServletResponse response){
+    public String addBooking(@RequestParam("carid") long carid, Model model, HttpServletRequest request){
+        Booking booking=null;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         ExampleUserDetails user = (ExampleUserDetails)authentication.getPrincipal();
         long userId = user.getId();
-        Booking booking = bookingService.addBooking(carid, userId);
-        if(booking != null){
-            model.addAttribute("booking", booking);
-            Cookie bookingIdCookie = new Cookie("BookingId", String.valueOf(booking.getId()));
-            response.addCookie(bookingIdCookie);
-        }else
-        {
-                model.addAttribute("Message", "Es ist eine Fehler bei der Buchung aufgetreten, bitte versuchen Sie später!");
-                return "redirect:/";
+        try{
+            booking = bookingService.addBooking(carid, userId);
+            if(booking != null){
+                model.addAttribute("booking", booking);
+                //Cookie bookingIdCookie = new Cookie("BookingId", String.valueOf(booking.getId()));
+                //response.addCookie(bookingIdCookie);
+            }
+        }
+        catch(Exception e){
+            request.setAttribute("Message", e.getMessage());
+            return "forward:/";
         }
         return "bookingdetails";
     }
@@ -77,10 +83,10 @@ public class BookingController {
         if(bookingService.startBooking(id)){
             Booking booking= bookingService.getBookingById(id).get();
             // set open Car FLag
-            Cookie carFlagCookie = new Cookie("IsCarOpen", "true");
+            //Cookie carFlagCookie = new Cookie("IsCarOpen", "true");
 
             //add cookie to response
-            response.addCookie(carFlagCookie);
+            //response.addCookie(carFlagCookie);
 
             model.addAttribute("booking", booking);
         }
@@ -95,12 +101,12 @@ public class BookingController {
     public String cancelBooking(@RequestParam("id") Long id, HttpServletResponse response){
         if(bookingService.getBookingById(id).isPresent()){
             bookingService.cancelBooking(id);
-            // set open Car FLag
-            Cookie cookie = new Cookie("IsCarOpen", "false");
-            Cookie bookingIdCookie = new Cookie("BookingId", "");
-            //add cookie to response
-            response.addCookie(cookie);
-            response.addCookie(bookingIdCookie);
+//            // set open Car FLag
+//            Cookie cookie = new Cookie("IsCarOpen", "false");
+//            Cookie bookingIdCookie = new Cookie("BookingId", "");
+//            //add cookie to response
+//            response.addCookie(cookie);
+//            response.addCookie(bookingIdCookie);
         }
         else{
             throw new ResponseStatusException((HttpStatus.NOT_FOUND),"Es ist ein Fehler bei der Stornierung aufgetreten, bitte melden Sie Sich beim Kundendienst!");
@@ -111,12 +117,12 @@ public class BookingController {
     public String completeBooking(@RequestParam("id") Long id, HttpServletResponse response){
         if(bookingService.getBookingById(id).isPresent()){
             bookingService.finishBooking(id);
-            // set open Car FLag
-            Cookie cookie = new Cookie("IsCarOpen", "false");
-            Cookie bookingIdCookie = new Cookie("BookingId", "");
-            //add cookie to response
-            response.addCookie(cookie);
-            response.addCookie(bookingIdCookie);
+//            // set open Car FLag
+//            Cookie cookie = new Cookie("IsCarOpen", "false");
+//            Cookie bookingIdCookie = new Cookie("BookingId", "");
+//            //add cookie to response
+//            response.addCookie(cookie);
+//            response.addCookie(bookingIdCookie);
         }
         else{
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
