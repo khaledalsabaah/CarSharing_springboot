@@ -33,7 +33,10 @@ public class BookingService {
     }
 
     public List<Booking> getAllBookingsByCustomerId(long id) {
-        return (List<Booking>) bookingRepository.findByCustomerIs(customerRepository.findById(id).get());
+        List<Booking> bookingList = (List<Booking>) bookingRepository
+                .findByCustomerIs(customerRepository.findById(id).get());
+        bookingList.sort((t1, t2) -> t2.getBookTime().compareTo(t1.getBookTime()));
+        return bookingList;
     }
 
     public Booking addBooking(long carID, long customerID) {
@@ -119,7 +122,7 @@ public class BookingService {
             booking.setEndTime(new Date());
 
             long duration = booking.getEndTime().getTime() - booking.getStartTime().getTime();
-            long durationInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+            double durationInMinutes = TimeUnit.MILLISECONDS.toMinutes(duration + 59999);
             booking.setCost((booking.getCar().getPricePerHour() / 60) * durationInMinutes);
 
             booking.getCar().setAvailable(true);
