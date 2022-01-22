@@ -15,7 +15,7 @@
     </div>
   </div>
     <div class="container">
-      <form action="#"  th:action="@{addcustomerform}" th:object="${form}" method ="post">
+      <form action="#"  th:action="@{addcustomerform}" method ="post">
         <div>
           <h2>JETZT REGISTRIEREN UND EXKLUSIVEN VORTEIL SICHERN</h2>
           <p>
@@ -29,43 +29,43 @@
         <div class="rowoben">
           <h4>Konto</h4>
           <div class="input-group input-group-icon">
-            <input type="text" minlength="2" required="required" placeholder="Vorname" name = "firstName" />
+            <input type="text" minlength="2" required placeholder="Vorname" name = "firstName" />
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" minlength="2"  required="required" placeholder="Nachname"  name = "lastName" />
+            <input type="text" minlength="2"  required placeholder="Nachname"  name = "lastName" />
 <!--            <i th:if="${#fields.hasErrors('lastName')}" >dieses Feld darf nicht leer sein</i>-->
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="email" required="required" placeholder="Email Adresse" name = "email"  />
+            <input type="email" required placeholder="Email Adresse" name = "email"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
 <!--            pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}"-->
-            <input type="password" required="required" minlength="8" id= "password" placeholder="Passwort" name = "password"  />
+            <input type="password" required minlength="8" id= "password" placeholder="Passwort" name = "password"  />
 <!--            <i th:if="${#fields.hasErrors('password')}" >dieses Feld darf nicht leer sein</i>-->
             <div class="input-icon"><i class="fa fa-key"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="tel" placeholder="Telefonnummer" name = "phoneNumber"  />
+            <input type="tel" pattern="[0-9]{12}" placeholder="Telefonnummer" name = "phoneNumber"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" minlength="11" required="required" placeholder="Führerscheinnummer" name = "driversLicenceID"  />
+            <input type="text" minlength="11" required placeholder="Führerscheinnummer" name = "driversLicenceID"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
 
           <div class="input-group input-group-icon">
-            <input type="text" minlength="4" required="required" placeholder="Straße & Hausnummer" name = "address"  />
+            <input type="text" minlength="4" required placeholder="Straße & Hausnummer" name = "address"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" minlength="4" required="required" placeholder="PLZ" name = "zipcode"  />
+            <input type="text" minlength="4" required placeholder="PLZ" name = "zipcode"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" minlength="2" required="required" placeholder="Ort" name = "city"  />
+            <input type="text" minlength="2" required placeholder="Ort" name = "city"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
         </div>
@@ -86,24 +86,22 @@
           <h4>Zhalungsmittel</h4>
           <div class="input-group">
 
-            <label for="payment-method-card"
-              ><span><i class="fa fa-cc-visa"></i>Credit Card</span></label
-            >
+            <label ><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
 
           </div>
           <div class="input-group input-group-icon">
-            <input type="number"   min="999999999" required="required"placeholder="Card Number" name = "creditCardNumber"  />
+            <input type="number"   min="999999999" requiredplaceholder="Card Number" name = "creditCardNumber"  />
             <div class="input-icon"><i class="fa fa-credit-card"></i></div>
           </div>
           <div class="col-half">
             <div class="input-group input-group-icon">
-              <input type="number"  min="99" max="999" required="required"placeholder="Card CVC" name = "creditCardCSV"  />
+              <input type="number"  min="99" max="999" requiredplaceholder="Card CVC" name = "creditCardCSV"  />
               <div class="input-icon"><i class="fa fa-user"></i></div>
             </div>
           </div>
           <div class="col-half">
             <div class="input-group input-group-icon">
-                <input type="date"  required="required" min="2018-03-01" value="" name = "creditCardExpirationDate"  /></label>
+                <input type="date"  required min="2018-03-01" value="" name = "creditCardExpirationDate"  /></label>
             </div>
           </div>
 <!--          <div class="col-half">-->
@@ -122,7 +120,7 @@
         <div class="row">
           <h4>Geschäftsbedingungen</h4>
           <div class="input-group" id="box">
-            <input id="terms" type="checkbox" required="required"/>
+            <input id="terms" type="checkbox" required/>
             <label for="terms"
               >Ich akzeptiere die Allgemeinen Geschäftsbedingungen für die
               Anmeldung zu diesem Dienst und hiermit bestätige ich die

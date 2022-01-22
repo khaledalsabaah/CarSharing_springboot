@@ -68,6 +68,8 @@ h1 , h2  {
     margin-top: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
+    padding: inherit;
+
 }
 
 .cs-booking h3.cs-car-brand {

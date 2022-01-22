@@ -812,6 +812,6 @@ a:hover {
 .cs-booking a.cs-book-now:hover {
   transform: scale(1.1);
 }
-#alert-custom{
-  transform: translateY(-10%);
+.alert{
+  margin-bottom: 2rem;
 }

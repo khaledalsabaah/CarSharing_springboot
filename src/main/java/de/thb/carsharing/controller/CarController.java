@@ -43,6 +43,12 @@ public class CarController {
         return "addcar";
     }
 
+    @GetMapping("submitcar")
+    public String showSubmitCar(Model model, HttpServletRequest request) {
+        request.setAttribute("SuccessMessage", "Sie haben ein Auto erfolgreich hinzufügt!");
+        return "forward:/";
+    }
+
     @PostMapping("addcarform")
     public String addcarform(@Valid AddCarForm form, BindingResult result, Model model) {
 
@@ -58,8 +64,7 @@ public class CarController {
         }
         carService.addCar(form.getModel(), form.getCarColor(), form.getYearBuilt(), form.getFuelType(),
                 form.getXCoordinates(), form.getYCoordinates(), form.getPreisPerHour(), form.isAutomatic());
-        //request.setAttribute("SuccessMessage", "Sie haben ein Auto erfolgreich hinzufügt!");
-        return "redirect:/";
+        return "redirect:/submitcar";
     }
 
     @GetMapping("cars")

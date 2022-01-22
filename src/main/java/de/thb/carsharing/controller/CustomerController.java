@@ -59,6 +59,11 @@ public class CustomerController{
         return "about";
     }
 
+    @GetMapping("submitcustomer")
+    public String showSubmitCar(Model model, HttpServletRequest request) {
+        request.setAttribute("SuccessMessage", "Sie haben ein Konto erfolgreich erstellt!");
+        return "forward:/";
+    }
     @PostMapping("addcustomerform")
     public String addCustomer(@Valid AddCustomerForm form, BindingResult result, Model model){
 
@@ -81,7 +86,6 @@ public class CustomerController{
             return "signup";
         }
 
-        model.addAttribute("SuccessMessage", "Sie haben ein Konto erfolgreich erstellt!");
-        return "redirect:/";
+        return "redirect:/submitcustomer";
     }
 }
