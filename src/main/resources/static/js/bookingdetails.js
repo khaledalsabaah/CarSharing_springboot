@@ -116,8 +116,8 @@ function cancelBooking() {
     if(closecarHtml!=null)
         closecarHtml.style.display = "none";
     //document.getElementById("cs-booking").style.display = "none";
-    if(document.getElementById("dasbuchen")!=null)
-        document.getElementById("dasbuchen").innerHTML = "Die Buchung wurde Storniert"
+    // if(document.getElementById("dasbuchen")!=null)
+    //     document.getElementById("dasbuchen").hidden = "false";
     setTimeout(function () {
         if (typeof bookingidJs !== 'undefined' && bookingidJs.length !== 0) {
             let url = "/cancelbooking?id=" + bookingidJs;

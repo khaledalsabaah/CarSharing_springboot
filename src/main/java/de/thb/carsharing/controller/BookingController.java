@@ -66,20 +66,21 @@ public class BookingController {
         return "mybookings";
     }
     @GetMapping("bookings/{id}")
-    public String showBookingDetails(@PathVariable("id") long id, Model model){
+    public String showBookingDetails(@PathVariable("id") long id, Model model,HttpServletRequest request){
         Booking booking;
         if(bookingService.getBookingById(id).isPresent()){
             booking= bookingService.getBookingById(id).get();
             model.addAttribute("booking", booking);
         }
         else {
-            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
+            request.setAttribute("Message", "UPS! Ein Fehler ist aufgetreten, bitte versuchen Sie es zum einem späteren Zeitpunkt erneut!");
+            return "forward:/";
         }
         return "bookingdetails";
     }
 
     @RequestMapping("startbooking")
-    public String startBooking(@RequestParam("id") Long id, HttpServletResponse response, Model model){
+    public String startBooking(@RequestParam("id") Long id, HttpServletResponse response, Model model,HttpServletRequest request){
         if(bookingService.startBooking(id)){
             Booking booking= bookingService.getBookingById(id).get();
             // set open Car FLag
@@ -91,14 +92,15 @@ public class BookingController {
             model.addAttribute("booking", booking);
         }
         else{
-            throw new ResponseStatusException((HttpStatus.NOT_FOUND),"Es ist ein Fehler bei der Buchung aufgetreten, bitte melden Sie Sich beim Kundendienst!");
+            request.setAttribute("Message", "UPS! Ein Fehler ist aufgetreten, bitte versuchen Sie es zum einem späteren Zeitpunkt erneut!");
+            return "forward:/";
         }
 
         return "bookingdetails";
     }
 
     @RequestMapping("cancelbooking")
-    public String cancelBooking(@RequestParam("id") Long id, HttpServletResponse response){
+    public String cancelBooking(@RequestParam("id") Long id, HttpServletResponse response,HttpServletRequest request){
         if(bookingService.getBookingById(id).isPresent()){
             bookingService.cancelBooking(id);
 //            // set open Car FLag
@@ -109,12 +111,13 @@ public class BookingController {
 //            response.addCookie(bookingIdCookie);
         }
         else{
-            throw new ResponseStatusException((HttpStatus.NOT_FOUND),"Es ist ein Fehler bei der Stornierung aufgetreten, bitte melden Sie Sich beim Kundendienst!");
+            request.setAttribute("Message", "UPS! Ein Fehler ist aufgetreten, bitte versuchen Sie es zum einem späteren Zeitpunkt erneut!");
+            return "forward:/";
         }
-        return "redirect:/";
+        return "redirect:/bookings/"+ id;
     }
     @RequestMapping("completebooking")
-    public String completeBooking(@RequestParam("id") Long id, HttpServletResponse response){
+    public String completeBooking(@RequestParam("id") Long id, HttpServletResponse response,HttpServletRequest request){
         if(bookingService.getBookingById(id).isPresent()){
             bookingService.finishBooking(id);
 //            // set open Car FLag
@@ -125,7 +128,8 @@ public class BookingController {
 //            response.addCookie(bookingIdCookie);
         }
         else{
-            throw new ResponseStatusException((HttpStatus.NOT_FOUND));
+            request.setAttribute("Message", "UPS! Ein Fehler ist aufgetreten, bitte versuchen Sie es zum einem späteren Zeitpunkt erneut!");
+            return "forward:/";
         }
         return "redirect:/bookings/" + id;
     }

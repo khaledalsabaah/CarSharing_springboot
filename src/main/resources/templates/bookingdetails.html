@@ -17,7 +17,7 @@
     <h1> Buchung</h1>
     <h2 th:if="not ${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Sie
         haben das folgende Auto gebucht:</h2>
-    <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Die Buchung wurde
+    <h2  th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Die Buchung wurde
         Storniert</h2>
 
     <section class="cs-booking" id="cs-booking">
