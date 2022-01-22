@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{navbar}">
 <head>
+
     <link rel="stylesheet" href=" ../static/css/bookingdetails.css" th:href="@{/css/bookingdetails.css}"/>
-    <!--    <link rel="stylesheet" href=" ../static/css/notifications.css" th:href="@{/css/notifications.css}">-->
 
     <meta charset="UTF-8">
-    <title>booking</title>
 
 
-</head>
 
 <body>
+<div layout:fragment="content">
+
 <div class="container">
 
     <h1> Buchung</h1>
@@ -24,7 +24,8 @@
         <h3 class="cs-car-brand" th:text="${booking.car.model}">VW</h3>
         <h2 class="cs-color" th:text="${booking.car.carColor}">RED</h2>
         <p class="cs-address" id="address">Brandenburg</p>
-        <h2 class="cs-color" th:text="${booking.car.pricePerHour}">RED</h2>
+        <p class="cs-color"  th:text=" ${#numbers.formatDecimal(booking.car.pricePerHour,2,2,'COMMA')} + ' € je Stunde'">0.00</p>
+
     </section>
 
     <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
@@ -74,5 +75,8 @@
 <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <!--<script src="../static/js/notifications.js" th:src="@{/js/notifications.js}"></script>-->
 <script type="text/javascript" src="../static/js/bookingdetails.js" th:src="@{/js/bookingdetails.js}"></script>
+
+</div>
+
 </body>
 </html>
