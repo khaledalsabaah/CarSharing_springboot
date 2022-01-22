@@ -54,9 +54,20 @@
              <option th:each="fuelType : ${T(de.thb.carsharing.entity.Type.FuelType).values()}"
                      th:value="${fuelType}" th:text="${fuelType}"></option>
            </select>
-            <input id="confirm" type="checkbox" name = "automatic"/><label for="confirm">Automatik</label>
+
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "automatic">
+              <label class="form-check-label" for="flexCheckDefault">
+                Automatik
+              </label>
+
+            </div>
+
           <form th:action=" @{/}">
+
             <div class="add"><input type="submit" value="Speichern" /></div>
+
           </form>
         </form>
       </div>

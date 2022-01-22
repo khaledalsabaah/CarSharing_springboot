@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{navbar}">
+
   <head>
     <meta charset="UTF-8">
     <title>ein Konto Erstellen </title>
@@ -8,6 +11,8 @@
     <link rel="stylesheet" href="../static/css/signup.css" th:href="@{/css/signup.css}"/>
   </head>
   <body>
+  <div layout:fragment="content">
+
   <div th:if="${Message != null}" class="col-md-12" align="center">
     <div class="alert alert-danger" role="alert" id ="alert-custom">
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -160,5 +165,6 @@
       date18YrsAgo.setFullYear(date18YrsAgo.getFullYear() - 18);
       document.getElementById("birthdate").setAttribute("max", date18YrsAgo.toISOString().split('T')[0]);
     </script>
+  </div>
   </body>
 </html>

@@ -110,6 +110,9 @@ function initMap() {
 
         marker.addListener('click', function () {
             displayBookingSection(props);
+
+
+
         });
 
         // Check for customicon
@@ -144,6 +147,7 @@ function initMap() {
 let carID;
 
 function displayBookingSection(props) {
+
     if ($('.cs-booking').css('display') != 'none') {
         $('.cs-booking').hide(200);
     }

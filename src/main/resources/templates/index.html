@@ -68,8 +68,8 @@
 
             <nav class="mx-auto site-navigation">
                 <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                    <li><a href="index.html" class="nav-link active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="index.html" th:href="@{/}" class="nav-link active">Home</a></li>
+                    <li><a    href="about.html"th:href="@{/about}">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li sec:authorize="hasAuthority('ROLE_ADMIN')">
                         <a href="addcar.html" th:href="@{/addcar}"><span class="mr-2">+</span> Add Car</a>
@@ -133,10 +133,10 @@
         </div>
     </div>
 </header>
-
 <div class="hero" style="background-image: url('../static/images/hero_1.jpg')"
      th:style="|background-image: url(@{/images/hero_1.jpg})|"></div>
-
+<button id="auto-suchen" style="transform:translate3d(844px, -250px, 10px);border: 20px;
+    border-radius: 7px; " onclick="myFunction()">Auto Suchen</button>
 <!-- Google Maps -->
 <div
         id="csMap"
@@ -169,6 +169,13 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIc0TEu2s9XA77NASIjZxlh1xEtzUXY8w&callback=initMap"
 ></script>
 <script src="../static/js/cs-google-maps.js" th:src="@{/js/cs-google-maps.js}"></script>
+
+<script>
+    function myFunction() {
+        var elmnt = document.getElementById("csMap");
+        elmnt.scrollIntoView();
+    }
+</script>
 </body>
 
 </html>

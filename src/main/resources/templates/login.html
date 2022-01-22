@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{navbar}">
+
+
     <head>
       <link rel="stylesheet" href=" ../static/css/signup.css" th:href="@{/css/signup.css}"/>
       <meta charset="UTF-8">
     </head>
   <body>
+
+  <div layout:fragment="content">
   <div class="container">
     <div class="rowoben-login">
       <h1>Anmelden</h1>
@@ -30,6 +36,8 @@
         <p>Sie haben kein Konto? Sie können ein erstellen! <a href="singup.html">Signup</a></p>
     </form>
     </div>
+  </div>
+
   </div>
   </body>
 </html>

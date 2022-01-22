@@ -815,3 +815,8 @@ a:hover {
 .alert{
   margin-bottom: 2rem;
 }
+
+
+button auto-suchen{
+  transform: translate3d(1000px, 530px, 10px);
+}
