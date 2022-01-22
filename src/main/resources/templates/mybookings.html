@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+            layout:decorate="~{navbar}">
 <head>
     <title>Meine Buchung</title>
     <meta charset="UTF-8">
@@ -11,6 +13,7 @@
 
 </head>
 <body>
+<div layout:fragment="content">
 
 <div class="limiter">
     <div class="container-table100">
@@ -31,12 +34,14 @@
 
 <!--                        <tr onclick="window.location='http://localhost:9090/CarSharing/templates/index.html';">-->
                         <tr th:attr="onclick=|window.location='/bookings/${booking.id}'|">
-                            <td class="column1"  th:text="${booking.bookTime}">2017-09-29 </td>
-                            <td class="column2"  th:text="${booking.startTime}">11:13</td>
-                            <td class="column3"  th:text="${booking.endTime}">12:30</td>
+                            <td class="column1"  th:text="${#dates.format(booking.bookTime, 'dd-MM-yyyy HH:mm')}">2017-09-29 </td>
+                            <td class="column2"  th:text="${#dates.format(booking.startTime, 'HH:mm')}">11:13</td>
+                            <td class="column3"  th:text="${#dates.format(booking.endTime, 'HH:mm')}">12:30</td>
                             <td class="column4"  th:text="${booking.bookingStatus}">Aktiv</td>
                             <td class="column5"  th:text="${booking.car.model}">Audi</td>
-                            <td class="column6"  th:text="${booking.car.pricePerHour}">30 $</td>
+                            <td class="column6"  th:text=" ${#numbers.formatDecimal(booking.cost,2,2,'COMMA')} + ' €'">0.00</td>
+
+
                         </tr>
 
                     </tbody>
@@ -48,6 +53,6 @@
 
 
 <!--===============================================================================================-->
-
+</div>
 </body>
 </html>

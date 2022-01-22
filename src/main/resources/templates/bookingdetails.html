@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{navbar}">
 <head>
+
     <link rel="stylesheet" href=" ../static/css/bookingdetails.css" th:href="@{/css/bookingdetails.css}"/>
-    <!--    <link rel="stylesheet" href=" ../static/css/notifications.css" th:href="@{/css/notifications.css}">-->
 
     <meta charset="UTF-8">
-    <title>booking</title>
 
 
-</head>
 
 <body>
+<div layout:fragment="content">
+
 <div class="container">
 
     <h1> Buchung</h1>
-    <h2 id="dasbuchen" th:if="${booking.bookingStatus != T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Sie
+    <h2 th:if="not ${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Sie
         haben das folgende Auto gebucht:</h2>
     <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Die Buchung wurde
         Storniert</h2>
@@ -24,15 +24,16 @@
         <h3 class="cs-car-brand" th:text="${booking.car.model}">VW</h3>
         <h2 class="cs-color" th:text="${booking.car.carColor}">RED</h2>
         <p class="cs-address" id="address">Brandenburg</p>
-        <h2 class="cs-color" th:text="${booking.car.pricePerHour}">RED</h2>
+        <p class="cs-color"  th:text=" ${#numbers.formatDecimal(booking.car.pricePerHour,2,2,'COMMA')} + ' € je Stunde'">0.00</p>
+
     </section>
 
-    <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
-        Sie habe die Buchung erfolgreich abgeschlossen, Wie freuen uns auf Ihren nächsten Besuch!
-    </h2>
-    <h2 hidden id="finishText">
-        Sie habe die Buchung erfolgreich abgeschlossen, Wie freuen uns auf Ihren nächsten Besuch!
-    </h2>
+    <div th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
+        <h3 > Sie habe die Buchung erfolgreich abgeschlossen, Ihre Buchungskosten ist:  </h3>
+        <h3  th:text=" ${#numbers.formatDecimal(booking.cost,2,2,'COMMA')} + ' €'">0.00> </h3>
+        <h3>Wir freuen uns auf Ihren nächsten Besuch!</h3>
+    </div>
+
 
     <h1 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).BOOKED}">
         <span id="m"></span>
@@ -74,5 +75,8 @@
 <script src="../static/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-3.3.1.min.js}"></script>
 <!--<script src="../static/js/notifications.js" th:src="@{/js/notifications.js}"></script>-->
 <script type="text/javascript" src="../static/js/bookingdetails.js" th:src="@{/js/bookingdetails.js}"></script>
+
+</div>
+
 </body>
 </html>

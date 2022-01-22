@@ -11,6 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import de.thb.carsharing.entity.*;
@@ -49,7 +50,7 @@ public class CarController {
             String Message= "bitte die Felder mit gültigen Daten ausfüllen!";
             List<FieldError> errors = result.getFieldErrors();
             for (FieldError error : errors ) {
-                Message +=  "\n "+error.getDefaultMessage();
+                Message +=  ", "+error.getDefaultMessage();
             }
             //result.getFieldError();
             model.addAttribute("Message", Message);
@@ -57,6 +58,7 @@ public class CarController {
         }
         carService.addCar(form.getModel(), form.getCarColor(), form.getYearBuilt(), form.getFuelType(),
                 form.getXCoordinates(), form.getYCoordinates(), form.getPreisPerHour(), form.isAutomatic());
+        //request.setAttribute("SuccessMessage", "Sie haben ein Auto erfolgreich hinzufügt!");
         return "redirect:/";
     }
 

@@ -128,7 +128,7 @@ function cancelBooking() {
 }
 function finishBooking() {
     clearInterval(timerVar);
-    document.getElementById("finishText").hidden=false;
+    //document.getElementById("finishText").hidden=false;
     let url = "/completebooking?id=" + bookingidJs;
     window.location = url;
 }

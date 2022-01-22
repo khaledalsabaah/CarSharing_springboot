@@ -8,9 +8,9 @@
   </head>
   <body>
   <div th:if="${Message != null}" class="col-md-12" align="center">
-    <br />
-    <div class="alert alert-danger" role="alert">
-      <p style="white-space: pre ;" th:text="${Message}"/>
+    <div class="alert alert-danger" role="alert" id ="alert-custom">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong th:text="${Message}"/>
     </div>
   </div>
     <div class="container">
@@ -19,27 +19,27 @@
           <h2>Hinzufügen eines Autos</h2>
           <form th:action="@{addcarform}" method ="post">
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Marke und Modell" name = "model" />
+            <input type="text" minlength="2" required="required" placeholder="Marke und Modell" name = "model" />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Price" name = "preisPerHour"/>
+            <input type="number" required="required" placeholder="Price" min="0" name = "preisPerHour"/>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="xCoordinates" name = "xCoordinates"/>
+            <input type="number" step="any" required="required"  min="-90" max="90" placeholder="xCoordinates" name = "xCoordinates"/>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="yCoordinates" yCoordinates name = "yCoordinates"/>
+            <input type="number" step="any" required="required"  min="-180" max="180" placeholder="yCoordinates" yCoordinates name = "yCoordinates"/>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Herstellungsjahr" name = "yearBuilt"/>
+            <input type="number"  id ="yearBuilt" min="2000" max="3000" required="required" placeholder="Herstellungsjahr" name = "yearBuilt"/>
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
 
-            <select name="carColor">
+            <select name="carColor"required="required" >
               <option value="" disabled selected hidden>
                 Autofarbe
               </option>
@@ -47,7 +47,7 @@
                         th:value="${colorOpt}" th:text="${colorOpt}"></option>
               </select>
 
-            <select name="fuelType" >
+            <select name="fuelType" required="required" >
               <option value="" disabled selected hidden>
                 Kraftstoffart
               </option>
@@ -62,5 +62,8 @@
       </div>
     </div>
     </div>
+  <script>
+    document.getElementById("yearBuilt").setAttribute("max", new Date().getFullYear());
+  </script>
   </body>
 </html>

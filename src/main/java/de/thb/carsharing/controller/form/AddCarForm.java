@@ -27,8 +27,9 @@ public class AddCarForm {
     @Enumerated(EnumType.STRING)
     @Column(name="car_color")
     private CarColor carColor;
-    @NotNull(message = "Year Built darf nicht leer sein!")
-    @Min(value=0, message="bitte ein gültige Nummer eingeben")
+    @NotNull
+    @Min(value=2000, message="bitte ein gültige Nummer eingeben")
+    @Max(value=3000, message="bitte ein gültige Nummer eingeben")
     private short yearBuilt;
     @NotNull(message = "Fuel Type darf nicht leer sein!")
     @Enumerated(EnumType.STRING)
@@ -40,6 +41,5 @@ public class AddCarForm {
     @NotNull
     @DecimalMin(value = "0.0", message="bitte ein gültige Nummer eingeben")
     private double yCoordinates;
-    @NotNull(message = "Is automatic darf nicht leer sein!")
     private boolean automatic;
 }
