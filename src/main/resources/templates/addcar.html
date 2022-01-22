@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{navbar}">
   <head>
     <meta charset="UTF-8">
     <title>Hinzufügen eines Autos</title>
@@ -7,6 +9,8 @@
     <link rel="stylesheet" href="../static/css/singup.css" th:href="@{/css/signup.css}"/>
   </head>
   <body>
+  <div layout:fragment="content">
+
   <div th:if="${Message != null}" class="col-md-12" align="center">
     <div class="alert alert-danger" role="alert" id ="alert-custom">
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -57,10 +61,11 @@
 
 
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "automatic">
               <label class="form-check-label" for="flexCheckDefault">
                 Automatik
               </label>
+              <input style="margin-left: -500px " class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name= "automatic">
+
 
             </div>
 
@@ -76,5 +81,8 @@
   <script>
     document.getElementById("yearBuilt").setAttribute("max", new Date().getFullYear());
   </script>
+
+  </div>
+
   </body>
 </html>

@@ -79,7 +79,7 @@ body {
 }
 
 select {
-  width: 75%;
+  width: -webkit-fill-available;
 
   -moz-padding-start: calc(10px - 3px);
   background: rgba(255, 255, 255, 0.7);

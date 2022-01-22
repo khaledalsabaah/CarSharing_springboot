@@ -112,6 +112,12 @@ function initMap() {
             displayBookingSection(props);
 
 
+                var elmnt = document.getElementById("addbookingButton");
+                elmnt.scrollIntoView();
+
+
+
+
 
         });
 
