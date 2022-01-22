@@ -77,7 +77,7 @@
                     <li sec:authorize="hasAuthority('ROLE_CUSTOMER')">
                         <a href="mybookings.html" th:href="@{/mybookings}"><span class="mr-2"></span>Meine Buchungen</a>
                     </li>
-
+                    <a id="auto-suchen" onclick="myFunction()">Auto Suchen</a>
                     <li class="d-lg-none" sec:authorize="!isAuthenticated()">
                         <a href="singup.html" th:href="@{/signup}"><span class="mr-2">+</span> SingUp</a>
                     </li>
@@ -117,6 +117,7 @@
                     >
                         <span class="mr-2 icon-lock_outline"></span>Abmelden
                     </a>
+
                 </div>
                 <a
                         href="#"
@@ -135,8 +136,7 @@
 </header>
 <div class="hero" style="background-image: url('../static/images/hero_1.jpg')"
      th:style="|background-image: url(@{/images/hero_1.jpg})|"></div>
-<button id="auto-suchen" style="transform:translate3d(844px, -250px, 10px);border: 20px;
-    border-radius: 7px; " onclick="myFunction()">Auto Suchen</button>
+
 <!-- Google Maps -->
 <div
         id="csMap"
