@@ -33,7 +33,7 @@ public class AddCustomerForm {
     private String phoneNumber;
     @NotNull
     @NotEmpty
-    @Size(min=8)
+    @Size(min=8, message = "Passwort muss mindesten aus 8 Zeichnen bestehen")
     private String password;
     @NotNull
     private Date birthdate;

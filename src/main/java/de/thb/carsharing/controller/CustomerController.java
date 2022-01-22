@@ -11,12 +11,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -53,15 +55,28 @@ public class CustomerController{
     }
 
     @PostMapping("addcustomerform")
-    public String addCustomer(@Valid @ModelAttribute("form") AddCustomerForm form, BindingResult result, Model model){
-        if(result.hasErrors()){
-            model.addAttribute("Message", "bitte die Felder mit gültigen Daten ausfüllen!");
+    public String addCustomer(@Valid AddCustomerForm form, BindingResult result, Model model){
+
+        String Message= "bitte die Felder mit gültigen Daten ausfüllen!";
+        if (result.hasErrors()) {
+            List<FieldError> errors = result.getFieldErrors();
+            for (FieldError error : errors ) {
+                Message +=  ", "+error.getDefaultMessage();
+            }
+            //result.getFieldError();
+            model.addAttribute("Message", Message);
             return "signup";
         }
-        customerService.addCustomer(form.getEmail(),form.getPassword(),form.getFirstName(), form.getLastName() , form.getDriversLicenceID(), form.getPhoneNumber(),
-                form.getBirthdate(), form.getAddress(), form.getZipcode(), form.getCity(),
-                form.getCreditCardNumber(),form.getCreditCardCSV(),form.getCreditCardExpirationDate());
+        try {
+            customerService.addCustomer(form.getEmail(), form.getPassword(), form.getFirstName(), form.getLastName(), form.getDriversLicenceID(), form.getPhoneNumber(),
+                    form.getBirthdate(), form.getAddress(), form.getZipcode(), form.getCity(),
+                    form.getCreditCardNumber(), form.getCreditCardCSV(), form.getCreditCardExpirationDate());
+        }catch (Exception e){
+            model.addAttribute("Message", e.getMessage());
+            return "signup";
+        }
 
+        model.addAttribute("SuccessMessage", "Sie haben ein Konto erfolgreich erstellt!");
         return "redirect:/";
     }
 }

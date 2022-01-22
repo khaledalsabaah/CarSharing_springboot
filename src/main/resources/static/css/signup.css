@@ -27,9 +27,7 @@
 .row {
   width: 50%;
 }
-.col-half input {
-  width: 50%;
-}
+
 .input-group input-group-icon {
   width: 50%;
 }
@@ -92,4 +90,7 @@ select {
   margin-top: 15px;
   margin-bottom: 10px;
 }
-
+#alert-custom{
+  transform: translateY(-10%);
+  /*white-space: pre-wrap;*/
+}

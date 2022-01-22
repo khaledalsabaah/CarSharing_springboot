@@ -3,15 +3,15 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta charset="UTF-8">
-    <title>Hinzufügen eines Autos</title>
+    <title>ein Konto Erstellen </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/signup.css" th:href="@{/css/signup.css}"/>
   </head>
   <body>
   <div th:if="${Message != null}" class="col-md-12" align="center">
-    <br />
-    <div class="alert alert-danger" role="alert">
-      <p th:text="${Message}"/>
+    <div class="alert alert-danger" role="alert" id ="alert-custom">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <strong th:text="${Message}"/>
     </div>
   </div>
     <div class="container">
@@ -29,20 +29,21 @@
         <div class="rowoben">
           <h4>Konto</h4>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Vorname" name = "firstName" />
+            <input type="text" minlength="2" required="required" placeholder="Vorname" name = "firstName" />
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Nachname"  name = "lastName" />
+            <input type="text" minlength="2"  required="required" placeholder="Nachname"  name = "lastName" />
 <!--            <i th:if="${#fields.hasErrors('lastName')}" >dieses Feld darf nicht leer sein</i>-->
             <div class="input-icon"><i class="fa fa-user"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="email" placeholder="Email Adresse" name = "email"  />
+            <input type="email" required="required" placeholder="Email Adresse" name = "email"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="password" id= "password" placeholder="Passwort" name = "password"  />
+<!--            pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}"-->
+            <input type="password" required="required" minlength="8" id= "password" placeholder="Passwort" name = "password"  />
 <!--            <i th:if="${#fields.hasErrors('password')}" >dieses Feld darf nicht leer sein</i>-->
             <div class="input-icon"><i class="fa fa-key"></i></div>
           </div>
@@ -51,20 +52,20 @@
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Führerscheinnummer" name = "driversLicenceID"  />
+            <input type="text" minlength="11" required="required" placeholder="Führerscheinnummer" name = "driversLicenceID"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
 
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Straße & Hausnummer" name = "address"  />
+            <input type="text" minlength="4" required="required" placeholder="Straße & Hausnummer" name = "address"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="PLZ" name = "zipcode"  />
+            <input type="text" minlength="4" required="required" placeholder="PLZ" name = "zipcode"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Ort" name = "city"  />
+            <input type="text" minlength="2" required="required" placeholder="Ort" name = "city"  />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
         </div>
@@ -75,7 +76,7 @@
 
               <div class="col-third">
 
-                <input type="date" value="" name = "birthdate"  /></label>
+                <input type="date" id="birthdate" value="" max="2004-12-31" name = "birthdate"  /></label>
               </div>
             </div>
           </div>
@@ -91,18 +92,18 @@
 
           </div>
           <div class="input-group input-group-icon">
-            <input type="text" placeholder="Card Number" name = "creditCardNumber"  />
+            <input type="number"   min="999999999" required="required"placeholder="Card Number" name = "creditCardNumber"  />
             <div class="input-icon"><i class="fa fa-credit-card"></i></div>
           </div>
           <div class="col-half">
             <div class="input-group input-group-icon">
-              <input type="text" placeholder="Card CVC" name = "creditCardCSV"  />
+              <input type="number"  min="99" max="999" required="required"placeholder="Card CVC" name = "creditCardCSV"  />
               <div class="input-icon"><i class="fa fa-user"></i></div>
             </div>
           </div>
           <div class="col-half">
             <div class="input-group input-group-icon">
-                <input type="date" value="" name = "creditCardExpirationDate"  /></label>
+                <input type="date"  required="required" min="2018-03-01" value="" name = "creditCardExpirationDate"  /></label>
             </div>
           </div>
 <!--          <div class="col-half">-->
@@ -121,7 +122,7 @@
         <div class="row">
           <h4>Geschäftsbedingungen</h4>
           <div class="input-group" id="box">
-            <input id="terms" type="checkbox" />
+            <input id="terms" type="checkbox" required="required"/>
             <label for="terms"
               >Ich akzeptiere die Allgemeinen Geschäftsbedingungen für die
               Anmeldung zu diesem Dienst und hiermit bestätige ich die
@@ -157,6 +158,9 @@
         };
         $('#password').pwstrength(options);
       });
+      const date18YrsAgo = new Date();
+      date18YrsAgo.setFullYear(date18YrsAgo.getFullYear() - 18);
+      document.getElementById("birthdate").setAttribute("max", date18YrsAgo.toISOString().split('T')[0]);
     </script>
   </body>
 </html>
