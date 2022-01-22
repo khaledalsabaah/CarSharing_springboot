@@ -54,6 +54,11 @@ public class CustomerController{
         return "signup";
     }
 
+    @GetMapping("about")
+    public String showAbout(Model model){
+        return "about";
+    }
+
     @PostMapping("addcustomerform")
     public String addCustomer(@Valid AddCustomerForm form, BindingResult result, Model model){
 

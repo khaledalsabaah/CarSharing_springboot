@@ -44,7 +44,7 @@ public class CarController {
     }
 
     @PostMapping("addcarform")
-    public String addcarform(@Valid AddCarForm form, BindingResult result, Model model, HttpServletRequest request) {
+    public String addcarform(@Valid AddCarForm form, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
             String Message= "bitte die Felder mit gültigen Daten ausfüllen!";
@@ -58,8 +58,8 @@ public class CarController {
         }
         carService.addCar(form.getModel(), form.getCarColor(), form.getYearBuilt(), form.getFuelType(),
                 form.getXCoordinates(), form.getYCoordinates(), form.getPreisPerHour(), form.isAutomatic());
-        request.setAttribute("SuccessMessage", "Sie haben ein Auto erfolgreich hinzufügt!");
-        return "forward:/";
+        //request.setAttribute("SuccessMessage", "Sie haben ein Auto erfolgreich hinzufügt!");
+        return "redirect:/";
     }
 
     @GetMapping("cars")

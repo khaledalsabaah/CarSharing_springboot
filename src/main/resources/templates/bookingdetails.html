@@ -15,7 +15,7 @@
 <div class="container">
 
     <h1> Buchung</h1>
-    <h2 id="dasbuchen" th:if="${booking.bookingStatus != T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Sie
+    <h2 th:if="not ${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Sie
         haben das folgende Auto gebucht:</h2>
     <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).CANCELLED}"> Die Buchung wurde
         Storniert</h2>
@@ -28,12 +28,12 @@
 
     </section>
 
-    <h2 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
-        Sie habe die Buchung erfolgreich abgeschlossen, Wie freuen uns auf Ihren nächsten Besuch!
-    </h2>
-    <h2 hidden id="finishText">
-        Sie habe die Buchung erfolgreich abgeschlossen, Wie freuen uns auf Ihren nächsten Besuch!
-    </h2>
+    <div th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
+        <h3 > Sie habe die Buchung erfolgreich abgeschlossen, Ihre Buchungskosten ist:  </h3>
+        <h3  th:text=" ${#numbers.formatDecimal(booking.cost,2,2,'COMMA')} + ' €'">0.00> </h3>
+        <h3>Wir freuen uns auf Ihren nächsten Besuch!</h3>
+    </div>
+
 
     <h1 th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).BOOKED}">
         <span id="m"></span>

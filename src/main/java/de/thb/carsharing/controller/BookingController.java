@@ -127,7 +127,7 @@ public class BookingController {
         else{
             throw new ResponseStatusException((HttpStatus.NOT_FOUND));
         }
-        return "redirect:/";
+        return "redirect:/bookings/" + id;
     }
     /*
     @GetMapping("bookings/{id}")
