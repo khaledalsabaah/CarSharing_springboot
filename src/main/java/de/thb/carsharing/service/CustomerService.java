@@ -32,9 +32,12 @@ public class CustomerService {
     public Customer addCustomer(String email, String password, String firstName, String lastName, String driversLicenceID,
                                 String phoneNumber, Date birthdate, String address, String zipcode, String city,
                                 String creditCardNumber, String creditCardCSV, Date creditCardExpirationDate) {
-        if (!password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$")) {
+        if (!password.matches("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$"))
             throw new IllegalArgumentException("Das Passwort erfüllt die Vorgaben nicht");
-        }
+        if(customerRepository.findByCreditCard_Number(creditCardNumber).isPresent())
+            throw new IllegalArgumentException("Die Kreditkarte ist bereits in Benutzung");
+        if (customerRepository.findByEmail(email).isPresent())
+            throw new IllegalArgumentException("Die Email ist bereits in Benutzung");
         Customer newCustomer = Customer.builder()
                 .firstName(firstName)
                 .lastName(lastName)
