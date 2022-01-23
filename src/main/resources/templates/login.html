@@ -7,6 +7,8 @@
     <head>
       <link rel="stylesheet" href=" ../static/css/signup.css" th:href="@{/css/signup.css}"/>
       <meta charset="UTF-8">
+      <title>Anmeldug</title>
+
     </head>
   <body>
 
@@ -33,7 +35,7 @@
         </div>
 
         <div class="add"><input type="submit" value="Anmelden" /></div>
-        <p>Sie haben kein Konto? Sie können ein erstellen! <a href="singup.html">Signup</a></p>
+        <p>Sie haben kein Konto? Sie können ein erstellen! <a href="singup.html"  th:href="@{/singup}">Signup</a></p>
     </form>
     </div>
   </div>
