@@ -817,6 +817,6 @@ a:hover {
 }
 
 
-button auto-suchen{
-  transform: translate3d(1000px, 530px, 10px);
+a auto-suchen{
+  color :white;
 }

@@ -28,9 +28,9 @@
 
     </section>
 
-    <div th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
+    <div style="text-align: center" th:if="${booking.bookingStatus == T(de.thb.carsharing.entity.Type.BookingStatus).FINISHED}">
         <h3 > Sie habe die Buchung erfolgreich abgeschlossen, Ihre Buchungskosten ist:  </h3>
-        <h3  th:text=" ${#numbers.formatDecimal(booking.cost,2,2,'COMMA')} + ' €'">0.00> </h3>
+        <h2  th:text=" ${#numbers.formatDecimal(booking.cost,2,2,'COMMA')} + ' €'">0.00> </h2>
         <h3>Wir freuen uns auf Ihren nächsten Besuch!</h3>
     </div>
 

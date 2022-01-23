@@ -24,6 +24,7 @@ html {
 }
 
 .about-section {
+    transform: translate3d(0px, 13px, 1px);
     padding: 50px;
     text-align: center;
     background-color: #474e5d;
@@ -31,6 +32,7 @@ html {
 }
 
 .container {
+    color: white;
     padding: 0 16px;
 }
 
@@ -41,7 +43,7 @@ html {
 }
 
 .title {
-    color: grey;
+    color: antiquewhite;
 }
 
 .button {
@@ -58,6 +60,9 @@ html {
 
 .button:hover {
     background-color: #555;
+}
+p {
+   color:  antiquewhite;
 }
 
 @media screen and (max-width: 650px) {
