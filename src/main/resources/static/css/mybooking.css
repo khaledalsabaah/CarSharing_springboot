@@ -10,6 +10,7 @@
 
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
+
 * {
     margin: 0px;
     padding: 0px;
@@ -150,7 +151,7 @@ table td, table th {
 }
 table thead tr {
     height: 60px;
-    background: #36304a;
+    background: #08162b;
 }
 table tbody tr {
     height: 50px;

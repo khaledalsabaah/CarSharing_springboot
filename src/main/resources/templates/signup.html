@@ -48,12 +48,13 @@
           </div>
           <div class="input-group input-group-icon">
 <!--            pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}"-->
-            <input type="password" required minlength="8" id= "password" placeholder="Passwort" name = "password"  />
+            <input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$" id= "password" placeholder="Passwort" name = "password"
+                   title="min. ein Großbuchstabe, min. ein Kleinbuchstabe, min. eine Zahl, zwischen 8 und 20 Zeichen" />
 <!--            <i th:if="${#fields.hasErrors('password')}" >dieses Feld darf nicht leer sein</i>-->
             <div class="input-icon"><i class="fa fa-key"></i></div>
           </div>
           <div class="input-group input-group-icon">
-            <input type="tel" pattern="[0-9]{12}" placeholder="Telefonnummer" name = "phoneNumber"  />
+            <input type="tel" pattern="[0-9]{4,12}" placeholder="Telefonnummer" name = "phoneNumber" title="bitte eine gültige Telefonnummer eingeben!" />
             <div class="input-icon"><i class="fa fa-envelope"></i></div>
           </div>
           <div class="input-group input-group-icon">
